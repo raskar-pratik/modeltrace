@@ -580,8 +580,8 @@
     },
     {
       "path": "tests/test_ui_e2e_browser.py",
-      "size_bytes": 24038,
-      "sha256": "70f856d1022dbe94438ad2fe7b60552a65e83a4147ddac614ecdb0848c93196e"
+      "size_bytes": 24044,
+      "sha256": "ad7f8c233ab3bee93f238395b5d6830a8fd05d69e6ab28488c54aed7f8d9fc49"
     }
   ]
 }

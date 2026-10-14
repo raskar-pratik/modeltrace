@@ -22,6 +22,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 
 from modeltrace.config import ROOT_DIR
 
@@ -318,7 +319,7 @@ class TestBrowserEndToEndFlow(unittest.TestCase):
         new_audit_btn = self._wait_for_testid("overview-new-audit-btn")
         self.assertIsNotNone(new_audit_btn)
         brand_mark = d.find_element(By.CSS_SELECTOR, 'img[src="/modeltrace-mark.svg"]')
-        self.assertTrue(d.execute_script("return arguments[0].complete && arguments[0].naturalWidth > 0;", brand_mark))
+        WebDriverWait(d, 8).until(lambda driver: driver.execute_script("return arguments[0].complete && arguments[0].naturalWidth > 0;", brand_mark))
         self._assert_no_horizontal_overflow("overview-empty-1440")
 
         # 2. Navigate to Endpoint Profiles -> test recoverable form error + valid profile + adapter failure
@@ -349,18 +350,11 @@ class TestBrowserEndToEndFlow(unittest.TestCase):
         self.assertIn("Created profile", succ_banner.text)
 
         # Trigger real bounded connection test on the newly created profile -> triggers MISSING_PROVIDER_SECRET_ENV adapter failure
-        test_btns = d.find_elements(By.CSS_SELECTOR, '[data-testid^="test-conn-btn-prof_"]')
-        for btn in test_btns:
-            tid = btn.get_attribute("data-testid") or ""
-            if (
-                not tid.endswith("demo_reference")
-                and not tid.endswith("genuine")
-                and not tid.endswith("substituted")
-                and not tid.endswith("mixed")
-            ):
-                btn.click()
-                break
-        time.sleep(0.8)
+        profile_id_match = re.search(r"\((prof_[a-z0-9]+)\)", succ_banner.text)
+        self.assertIsNotNone(profile_id_match, "Created profile banner must identify the saved profile")
+        profile_id = profile_id_match.group(1)
+        self._wait_for_testid(f"test-conn-btn-{profile_id}").click()
+        WebDriverWait(d, 8).until(lambda driver: "MISSING_PROVIDER_SECRET_ENV" in driver.page_source)
         self.assertIn("MISSING_PROVIDER_SECRET_ENV", d.page_source)
         d.save_screenshot(str(SCREENSHOT_DIR / "ui_1440_profiles.png"))
         self._assert_no_horizontal_overflow("profiles-1440")
