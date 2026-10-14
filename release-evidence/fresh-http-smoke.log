@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "health": {
+    "status": "ok",
+    "app_name": "ModelTrace",
+    "tagline": "Know what your API is serving.",
+    "version": "1.0.0",
+    "timestamp_utc": "2026-10-14T13:40:02.760887Z"
+  },
+  "asset_bytes": {
+    "/": 476,
+    "/audits": 476,
+    "/assets/app.js": 240651,
+    "/assets/styles.css": 9675,
+    "/favicon.svg": 603
+  }
+}

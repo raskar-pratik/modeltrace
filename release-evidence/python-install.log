@@ -1,0 +1,24 @@
+Obtaining file:///workspace/scratch/e70d4aa78855/review/modeltrace-final
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: modeltrace
+  Building editable for modeltrace (pyproject.toml): started
+  Building editable for modeltrace (pyproject.toml): finished with status 'done'
+  Created wheel for modeltrace: filename=modeltrace-1.0.0-0.editable-py3-none-any.whl size=5515 sha256=18d1714124e4bf2bb2e6f0d214114b65feef6f25eb39145cfd4923182caa067a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-hus28ttm/wheels/c6/a3/4c/6f29177bce8e6997b37ff09124098254eb66d6d39aae078040
+Successfully built modeltrace
+Installing collected packages: modeltrace
+  Attempting uninstall: modeltrace
+    Found existing installation: modeltrace 1.0.0
+    Uninstalling modeltrace-1.0.0:
+      Successfully uninstalled modeltrace-1.0.0
+Successfully installed modeltrace-1.0.0
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip

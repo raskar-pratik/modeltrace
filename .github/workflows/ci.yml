@@ -1,0 +1,158 @@
+name: ModelTrace V1 CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONUNBUFFERED: "1"
+  MODELTRACE_HOST: "127.0.0.1"
+
+jobs:
+  core-and-e2e:
+    name: Python Lockfile Install, Real Vite + TypeScript Build & Controlled E2E
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Provision Chromium & ChromeDriver for headless browser E2E
+        uses: browser-actions/setup-chrome@v2
+        id: chrome
+        with:
+          chrome-version: stable
+          install-dependencies: true
+          install-chromedriver: true
+
+      - name: Export portable browser binary paths
+        run: |
+          echo "MODELTRACE_CHROME_BINARY=${{ steps.chrome.outputs.chrome-path }}" >> "$GITHUB_ENV"
+          echo "MODELTRACE_CHROMEDRIVER_PATH=${{ steps.chrome.outputs.chromedriver-path }}" >> "$GITHUB_ENV"
+          echo "MODELTRACE_REQUIRE_BROWSER=1" >> "$GITHUB_ENV"
+
+      - name: Create isolated virtualenv and install locked Python + test dependencies
+        run: |
+          python3 -m venv .venv
+          .venv/bin/python3 -m pip install --upgrade pip
+          .venv/bin/python3 -m pip install -r requirements.lock
+          .venv/bin/python3 -m pip install --no-deps -e .
+
+      - name: Generate or verify complete npm lockfile and run clean npm ci
+        run: |
+          test -s frontend/package-lock.json
+          rm -rf frontend/node_modules
+          npm --prefix frontend ci
+          test -x frontend/node_modules/.bin/tsc
+          test -x frontend/node_modules/.bin/vite
+
+      - name: Temporary TypeScript negative control under actual tsc --noEmit
+        run: |
+          cp frontend/src/App.tsx frontend/src/App.tsx.bak
+          printf '\nconst __ciNegativeTypeControl: number = "intentional_type_error";\n' >> frontend/src/App.tsx
+          if npm --prefix frontend run typecheck; then
+            mv frontend/src/App.tsx.bak frontend/src/App.tsx
+            echo "ERROR: tsc --noEmit unexpectedly succeeded on intentional type error" >&2
+            exit 1
+          fi
+          mv frontend/src/App.tsx.bak frontend/src/App.tsx
+          echo "Negative control passed: actual tsc --noEmit rejected intentional type error."
+
+      - name: Run clean tsc --noEmit and Vite production build
+        run: |
+          rm -rf frontend/dist
+          npm --prefix frontend run typecheck
+          npm --prefix frontend run build
+          test -s frontend/dist/index.html
+          test ! -f frontend/dist/UNSUITABLE_FOR_RELEASE.json
+
+      - name: Upload generated frontend/package-lock.json and production frontend/dist artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: modeltrace-frontend-lock-and-dist
+          path: |
+            frontend/package-lock.json
+            frontend/dist/
+
+      - name: Python syntax & static compilation check
+        run: |
+          .venv/bin/python3 -m py_compile modeltrace/*.py modeltrace/**/*.py scripts/*.py tests/*.py
+
+      - name: Clean-environment database migration & offline DEMO smoke check
+        run: |
+          TMP_CI_DIR="$(mktemp -d)"
+          .venv/bin/modeltrace migrate --db-path "$TMP_CI_DIR/ci_smoke.db"
+          .venv/bin/modeltrace capabilities --db-path "$TMP_CI_DIR/ci_smoke.db"
+          .venv/bin/modeltrace demo-audit --scenario substituted --score-mode local_logit_rank --n-prompts 8 --m-reference 4 --seed 424242 --db-path "$TMP_CI_DIR/ci_smoke.db"
+
+      - name: Run pytest suite (core backend, stats, security, controlled HTTP, offline sharded LM, fail-fast setup, and browser E2E)
+        # Note: Only local controlled API fixtures are used; zero paid external LLM API calls.
+        run: |
+          .venv/bin/python3 -m pip check
+          .venv/bin/pytest -v
+
+      - name: Run separated-seed synthetic benchmark smoke check
+        run: |
+          .venv/bin/python3 scripts/run_benchmark.py --eval-trials 10 --cal-trials 25 --output-dir ./exports
+
+  docker-verification:
+    name: Multi-Stage Docker Image Build, Health, Asset Delivery & Controlled Demo Run
+    runs-on: ubuntu-latest
+    needs: core-and-e2e
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download verified frontend lockfile artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: modeltrace-frontend-lock-and-dist
+          path: frontend_artifacts
+
+      - name: Copy verified package-lock.json into build context
+        run: |
+          if [ -f "frontend_artifacts/package-lock.json" ]; then
+            cp frontend_artifacts/package-lock.json frontend/package-lock.json
+          fi
+          rm -rf frontend_artifacts
+
+      - name: Build multi-stage Docker image (Node frontend-builder + Python 3.11 runtime)
+        run: |
+          docker build -t modeltrace:ci-verify .
+
+      - name: Run container and verify health, asset delivery, and controlled demo audit
+        run: |
+          docker run -d --name modeltrace-verify -p 127.0.0.1:8000:8000 modeltrace:ci-verify
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8000/api/health >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:8000/api/health | grep -q '"status":"ok"'
+          curl -fsS http://127.0.0.1:8000/ | grep -q '<div id="root"></div>'
+          curl -fsS http://127.0.0.1:8000/assets/app.js >/dev/null
+          curl -fsS http://127.0.0.1:8000/assets/styles.css >/dev/null
+          docker exec modeltrace-verify test ! -f /app/frontend/dist/UNSUITABLE_FOR_RELEASE.json
+          docker exec modeltrace-verify modeltrace demo-audit --scenario substituted --score-mode local_logit_rank --n-prompts 8 --m-reference 4 --seed 424242 --db-path /tmp/container_demo.db
+
+      - name: Stop verification container
+        if: always()
+        run: docker rm -f modeltrace-verify || true

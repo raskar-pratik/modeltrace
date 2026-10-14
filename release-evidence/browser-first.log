@@ -1,0 +1,59 @@
+...E                                                                     [100%]
+==================================== ERRORS ====================================
+_ ERROR at setup of TestBrowserEndToEndFlow.test_full_connected_browser_workflow_and_responsive_layouts _
+
+cls = <class 'tests.test_ui_e2e_browser.TestBrowserEndToEndFlow'>
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        dist_index = ROOT_DIR / "frontend" / "dist" / "index.html"
+        if not dist_index.is_file():
+            if os.environ.get("MODELTRACE_REQUIRE_BROWSER") == "1":
+                raise RuntimeError("Browser verification requires a built production frontend.")
+            raise unittest.SkipTest("Run npm --prefix frontend run build before browser verification.")
+    
+        chrome_bin = resolve_chrome_binary()
+        chromedriver_bin = resolve_chromedriver_path()
+        if not chrome_bin:
+            if os.environ.get("MODELTRACE_REQUIRE_BROWSER") == "1":
+                raise RuntimeError("Required Chromium/Chrome binary was not provisioned.")
+            raise unittest.SkipTest("Skipping browser E2E: Chromium/Chrome binary not found on PATH.")
+    
+        SCREENSHOT_DIR.mkdir(parents=True, exist_ok=True)
+        cls.tmp_dir = tempfile.TemporaryDirectory()
+        cls.db_path = str(Path(cls.tmp_dir.name) / "e2e_browser.db")
+        cls.exports_dir = str(Path(cls.tmp_dir.name) / "exports")
+        cls.port = _find_free_port()
+        cls.api_url = f"http://127.0.0.1:{cls.port}"
+        cls.browser_url = f"http://modeltrace.local:{cls.port}"
+    
+        env = os.environ.copy()
+        env["MODELTRACE_DB_PATH"] = cls.db_path
+        env["MODELTRACE_EXPORTS_DIR"] = cls.exports_dir
+    
+        cls.server_proc = subprocess.Popen(
+            [sys.executable, "-m", "modeltrace.cli", "serve", "--host", "127.0.0.1", "--port", str(cls.port)],
+            cwd=str(ROOT_DIR),
+            env=env,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+    
+        ready = False
+        for _ in range(40):
+            try:
+                r = httpx.get(f"{cls.api_url}/api/health", timeout=1.0)
+                if r.status_code == 200:
+                    ready = True
+                    break
+            except Exception:
+                time.sleep(0.25)
+        if not ready:
+            cls.server_proc.terminate()
+>           raise RuntimeError("Live uvicorn server failed to start for E2E browser test.")
+E           RuntimeError: Live uvicorn server failed to start for E2E browser test.
+
+tests/test_ui_e2e_browser.py:243: RuntimeError
+=========================== short test summary info ============================
+ERROR tests/test_ui_e2e_browser.py::TestBrowserEndToEndFlow::test_full_connected_browser_workflow_and_responsive_layouts
+3 passed, 1 error in 10.28s

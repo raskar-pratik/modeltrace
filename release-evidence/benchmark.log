@@ -1,0 +1,135 @@
+{
+  "status": "ok",
+  "benchmark_file": "exports/measured_benchmark_v1.json",
+  "manifest_file": "exports/real_model_benchmark_manifest.json",
+  "calibration_valid_compatible": true,
+  "calibration_inadequate_compatible": false,
+  "conditions": [
+    {
+      "condition_id": "genuine_null_logit_n20_m8",
+      "score_mode": "local_logit_rank",
+      "budget": "n=20, m=8 (180 q/trial)",
+      "trials": 30,
+      "metric_role": "false_alarm_rate",
+      "rejections": 0,
+      "rate": 0.0,
+      "wilson_ci_95": [
+        0.0,
+        0.113513
+      ],
+      "median_p": 0.5433
+    },
+    {
+      "condition_id": "weak_alt_5pct_logit_n20_m8",
+      "score_mode": "local_logit_rank",
+      "budget": "n=20, m=8 (180 q/trial)",
+      "trials": 30,
+      "metric_role": "detection_power",
+      "rejections": 0,
+      "rate": 0.0,
+      "wilson_ci_95": [
+        0.0,
+        0.113513
+      ],
+      "median_p": 0.54195
+    },
+    {
+      "condition_id": "mixed_15pct_logit_n20_m8",
+      "score_mode": "local_logit_rank",
+      "budget": "n=20, m=8 (180 q/trial)",
+      "trials": 30,
+      "metric_role": "detection_power",
+      "rejections": 3,
+      "rate": 0.1,
+      "wilson_ci_95": [
+        0.0346,
+        0.256211
+      ],
+      "median_p": 0.2273
+    },
+    {
+      "condition_id": "mixed_35pct_logit_n20_m8",
+      "score_mode": "local_logit_rank",
+      "budget": "n=20, m=8 (180 q/trial)",
+      "trials": 30,
+      "metric_role": "detection_power",
+      "rejections": 15,
+      "rate": 0.5,
+      "wilson_ci_95": [
+        0.331541,
+        0.668459
+      ],
+      "median_p": 0.0106
+    },
+    {
+      "condition_id": "mixed_65pct_logit_n20_m8",
+      "score_mode": "local_logit_rank",
+      "budget": "n=20, m=8 (180 q/trial)",
+      "trials": 30,
+      "metric_role": "detection_power",
+      "rejections": 30,
+      "rate": 1.0,
+      "wilson_ci_95": [
+        0.886487,
+        1.0
+      ],
+      "median_p": 0.0001
+    },
+    {
+      "condition_id": "substituted_100pct_logit_n20_m8",
+      "score_mode": "local_logit_rank",
+      "budget": "n=20, m=8 (180 q/trial)",
+      "trials": 30,
+      "metric_role": "detection_power",
+      "rejections": 30,
+      "rate": 1.0,
+      "wilson_ci_95": [
+        0.886487,
+        1.0
+      ],
+      "median_p": 0.0001
+    },
+    {
+      "condition_id": "mixed_35pct_logit_low_budget_n10_m4",
+      "score_mode": "local_logit_rank",
+      "budget": "n=10, m=4 (50 q/trial)",
+      "trials": 30,
+      "metric_role": "detection_power",
+      "rejections": 6,
+      "rate": 0.2,
+      "wilson_ci_95": [
+        0.095051,
+        0.373057
+      ],
+      "median_p": 0.0515
+    },
+    {
+      "condition_id": "substituted_100pct_length_only_n20_m8",
+      "score_mode": "length_distribution_only",
+      "budget": "n=20, m=8 (180 q/trial)",
+      "trials": 30,
+      "metric_role": "detection_power",
+      "rejections": 30,
+      "rate": 1.0,
+      "wilson_ci_95": [
+        0.886487,
+        1.0
+      ],
+      "median_p": 0.0001
+    },
+    {
+      "condition_id": "genuine_null_length_only_n20_m8",
+      "score_mode": "length_distribution_only",
+      "budget": "n=20, m=8 (180 q/trial)",
+      "trials": 30,
+      "metric_role": "false_alarm_rate",
+      "rejections": 0,
+      "rate": 0.0,
+      "wilson_ci_95": [
+        0.0,
+        0.113513
+      ],
+      "median_p": 0.60965
+    }
+  ]
+}

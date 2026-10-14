@@ -1,0 +1,49 @@
+{
+  "manifest_version": "1.1.0",
+  "title": "ModelTrace V1 Executable Real-Model Evaluation Manifest",
+  "status": "NOT_RUN_IN_OFFLINE_SANDBOX",
+  "disclaimer": "No real-model benchmark tables are fabricated in this repository. Execute the commands below on a machine with outbound HTTPS access (or a local vLLM/Ollama/Transformers checkpoint) to generate empirical measurements on real model pairs.",
+  "prerequisites": {
+    "environment_variables": [
+      "MODELTRACE_PROVIDER_REFERENCE_KEY=<your-trusted-reference-api-key>",
+      "MODELTRACE_PROVIDER_TARGET_KEY=<your-audited-target-api-key>",
+      "MODELTRACE_ALLOWED_OUTBOUND_ORIGINS=https://api.together.xyz,https://api.fireworks.ai",
+      "MODELTRACE_LOCAL_MODELS_DIR=/path/to/verified/checkpoints (optional for local_logit_rank)"
+    ],
+    "optional_local_packages": [
+      "torch>=2.1",
+      "transformers>=4.38",
+      "safetensors>=0.4"
+    ]
+  },
+  "recommended_evaluation_protocol": {
+    "probe_suite": "builtin_v1 (24 prompts across 5 prompt families)",
+    "screening_budget": {
+      "n_prompts": 20,
+      "m_reference": 8,
+      "alpha": 0.01,
+      "queries_per_audit": 180
+    },
+    "extended_builtin_budget": {
+      "n_prompts": 24,
+      "m_reference": 19,
+      "alpha": 0.01,
+      "queries_per_audit": 480
+    },
+    "calibration_trials_per_alternative": 25,
+    "separated_seeds": {
+      "calibration_seed": 700100,
+      "genuine_control_seed": 800100,
+      "substituted_eval_seed": 900100
+    }
+  },
+  "executable_commands": [
+    "# 1. Initialize database and verify capabilities",
+    ".venv/bin/modeltrace migrate --db-path ./data/real_eval.db",
+    ".venv/bin/modeltrace capabilities --db-path ./data/real_eval.db",
+    "# 2. Run live audit comparing Reference Profile vs Target Profile",
+    ".venv/bin/modeltrace live-audit --reference-profile <REF_PROFILE_ID> --target-profile <TGT_PROFILE_ID> --score-mode local_logit_rank --n-prompts 20 --m-reference 8 --alpha 0.01 --seed 900100 --db-path ./data/real_eval.db",
+    "# 3. Export signed JSON/CSV/HTML audit bundle",
+    ".venv/bin/modeltrace export-audit <AUDIT_ID> --format json --output ./exports/real_audit_report.json --db-path ./data/real_eval.db"
+  ]
+}

@@ -1,0 +1,205 @@
+[
+  {
+    "check": "python-install",
+    "command": [
+      "/workspace/scratch/e70d4aa78855/tmp/modeltrace-final-venv/bin/python",
+      "-m",
+      "pip",
+      "install",
+      "--no-deps",
+      "-e",
+      "."
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "seconds": 7.35
+  },
+  {
+    "check": "python-dependency-check",
+    "command": [
+      "/workspace/scratch/e70d4aa78855/tmp/modeltrace-final-venv/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "seconds": 0.25
+  },
+  {
+    "check": "npm-clean-install",
+    "command": [
+      "npm",
+      "--prefix",
+      "frontend",
+      "ci",
+      "--no-audit",
+      "--no-fund",
+      "--fetch-retries=0",
+      "--fetch-timeout=30000"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "seconds": 1.18
+  },
+  {
+    "check": "typescript",
+    "command": [
+      "npm",
+      "--prefix",
+      "frontend",
+      "run",
+      "typecheck"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "seconds": 1.97
+  },
+  {
+    "check": "typescript-negative-control",
+    "command": [
+      "npm",
+      "--prefix",
+      "frontend",
+      "run",
+      "typecheck"
+    ],
+    "exit_code": 2,
+    "expected_exit_code": 2,
+    "status": "PASS",
+    "seconds": 2.0
+  },
+  {
+    "check": "production-build",
+    "command": [
+      "npm",
+      "--prefix",
+      "frontend",
+      "run",
+      "build"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "seconds": 2.89
+  },
+  {
+    "check": "npm-advisory-check",
+    "command": [
+      "npm",
+      "--prefix",
+      "frontend",
+      "audit",
+      "--json"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "seconds": 5.01
+  },
+  {
+    "check": "python-tests",
+    "command": [
+      "/workspace/scratch/e70d4aa78855/tmp/modeltrace-final-venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-k",
+      "not full_connected_browser_workflow"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "seconds": 59.77
+  },
+  {
+    "check": "migration",
+    "command": [
+      "/workspace/scratch/e70d4aa78855/tmp/modeltrace-final-venv/bin/python",
+      "-m",
+      "modeltrace.cli",
+      "migrate",
+      "--db-path",
+      "/tmp/tmpo3j2qgqt/demo.db"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "seconds": 0.69
+  },
+  {
+    "check": "substituted-demo",
+    "command": [
+      "/workspace/scratch/e70d4aa78855/tmp/modeltrace-final-venv/bin/python",
+      "-m",
+      "modeltrace.cli",
+      "demo-audit",
+      "--scenario",
+      "substituted",
+      "--n-prompts",
+      "20",
+      "--m-reference",
+      "8",
+      "--seed",
+      "424242",
+      "--db-path",
+      "/tmp/tmpo3j2qgqt/demo.db"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "seconds": 1.71
+  },
+  {
+    "check": "genuine-calibrated-demo",
+    "command": [
+      "/workspace/scratch/e70d4aa78855/tmp/modeltrace-final-venv/bin/python",
+      "-m",
+      "modeltrace.cli",
+      "demo-audit",
+      "--scenario",
+      "genuine",
+      "--n-prompts",
+      "20",
+      "--m-reference",
+      "8",
+      "--seed",
+      "424242",
+      "--with-calibration",
+      "--db-path",
+      "/tmp/tmpo3j2qgqt/demo.db"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "seconds": 12.43
+  },
+  {
+    "check": "genuine-uncalibrated-demo",
+    "command": [
+      "/workspace/scratch/e70d4aa78855/tmp/modeltrace-final-venv/bin/python",
+      "-m",
+      "modeltrace.cli",
+      "demo-audit",
+      "--scenario",
+      "genuine",
+      "--n-prompts",
+      "20",
+      "--m-reference",
+      "8",
+      "--seed",
+      "424242",
+      "--no-calibration",
+      "--db-path",
+      "/tmp/tmpo3j2qgqt/demo.db"
+    ],
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "status": "PASS",
+    "seconds": 1.72
+  }
+]

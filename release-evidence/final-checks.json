@@ -1,0 +1,19 @@
+{
+  "fresh_python_install": "PASS",
+  "fresh_frontend_install_and_build": "PASS",
+  "fresh_python_dependency_check": "PASS",
+  "fresh_backend_tests": {
+    "status": "PASS",
+    "passed": 27,
+    "optional_huggingface_skipped": 1,
+    "browser_deselected": 1
+  },
+  "fresh_http_delivery": "PASS",
+  "docker_python_package_layout_without_tests": "PASS",
+  "full_docker_image": "BLOCKED",
+  "browser_workflow": "BLOCKED: required Unix socket denied",
+  "native_windows": "NOT RUN",
+  "actual_huggingface": "NOT RUN",
+  "paid_api": "NOT RUN",
+  "gitHub_CI": "NOT RUN"
+}

@@ -1,0 +1,9 @@
+{
+  "status": "ok",
+  "db_path": "/tmp/tmpo3j2qgqt/demo.db",
+  "applied_migrations": [
+    "001_initial_schema",
+    "002_stage2_settings_and_pricing",
+    "003_stage3_calibration_identity_binding"
+  ]
+}

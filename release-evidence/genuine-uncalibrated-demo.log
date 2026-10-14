@@ -1,0 +1,21 @@
+{
+  "audit_id": "aud_7a79749fa72c",
+  "is_demo": true,
+  "scenario": "genuine",
+  "score_mode": "local_logit_rank",
+  "execution_state": "COMPLETED",
+  "verdict": "INCONCLUSIVE",
+  "verdict_reason": "[DEMO SYNTHETIC] Null hypothesis not rejected at alpha=0.0100 (p=0.38000), but verdict is INCONCLUSIVE because sensitivity at this budget is uncalibrated (No power calibration artifact attached. Non-rejection without established sensitivity defaults to INCONCLUSIVE.).",
+  "cvm_statistic": 0.15473431885289352,
+  "p_value": 0.38,
+  "alpha": 0.01,
+  "export": {
+    "id": "exp_a45e5a72abc0",
+    "audit_id": "aud_7a79749fa72c",
+    "export_format": "json",
+    "file_path": "/tmp/tmpo3j2qgqt/exports/aud_7a79749fa72c_report.json",
+    "content_hash": "cb579f71df196cde5f8a46c24f0524b0870c17ba689b6326b4b064af62047c6e",
+    "byte_size": 388384,
+    "created_at": "2026-10-14T13:34:36.277595Z"
+  }
+}

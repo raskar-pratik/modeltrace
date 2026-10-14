@@ -1,0 +1,546 @@
+{
+  "benchmark_version": "1.1.0",
+  "generated_at": "2026-10-14T13:37:36.416443+00:00",
+  "scope_disclaimer": "SYNTHETIC SOFTWARE VERIFICATION ONLY: These measurements validate the finite-sample rank transformation, Cram\u00e9r\u2013von Mises Monte Carlo engine, seed isolation, and calibration gates on controlled stochastic Markov/surprisal models. Observing 0/30 false rejections does NOT empirically prove a 1% false-positive rate (95% Wilson upper bound is 0.1135; exact Clopper-Pearson upper bound is 0.1157), and these synthetic runs do NOT measure detection accuracy on real hosted LLMs.",
+  "seed_separation": {
+    "development_seed": 100000,
+    "calibration_seed": 500000,
+    "evaluation_seed": 900000,
+    "streams_disjoint": true
+  },
+  "calibration_validation": {
+    "predeclared_target_power": 0.8,
+    "min_required_trials": 20,
+    "min_required_wilson_lower_95": 0.8,
+    "adequate_calibration_artifact": {
+      "id": "cal_bench_valid_25",
+      "name": "Predeclared Synthetic Calibration (Substituted & 65% Mixed, 25 trials)",
+      "score_mode": "local_logit_rank",
+      "probe_revision_id": "rev_builtin_screening_v1",
+      "probe_revision_hash": "builtin_v1",
+      "n_prompts": 20,
+      "m_reference": 8,
+      "max_output_tokens": 128,
+      "alpha": 0.01,
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "reference_model_descriptor": "synthetic-genuine-0",
+      "reference_identity": {
+        "reference_adapter_type": "synthetic_demo",
+        "reference_model_identifier": "synthetic-genuine-0",
+        "reference_base_url": "",
+        "reference_checkpoint_path": "",
+        "reference_checkpoint_revision": "main",
+        "reference_tokenizer_path": "",
+        "reference_chat_template": "",
+        "reference_precision": "float32",
+        "reference_device": "cpu",
+        "scorer_adapter_type": "synthetic_demo",
+        "scorer_model_identifier": "synthetic-genuine-0",
+        "scorer_checkpoint_path": "",
+        "scorer_checkpoint_revision": "main",
+        "scorer_tokenizer_path": "",
+        "scorer_chat_template": "",
+        "scorer_precision": "float32",
+        "scorer_device": "cpu"
+      },
+      "stat_engine_method": "cramer_von_mises_randomized_rank_mc",
+      "stat_engine_version": "1.0.0",
+      "is_demo": true,
+      "min_trials": 25,
+      "min_empirical_power": 1.0,
+      "alternatives": [
+        {
+          "alternative_name": "Substituted-100pct",
+          "scenario": "substituted",
+          "substitute_fraction": 1.0,
+          "n_trials": 25,
+          "n_rejected": 25,
+          "empirical_power": 1.0,
+          "wilson_lower_95": 0.866808,
+          "wilson_ci_95": [
+            0.866808,
+            1.0
+          ],
+          "clopper_pearson_lower_95": 0.862815,
+          "clopper_pearson_ci_95": [
+            0.862815,
+            1.0
+          ]
+        },
+        {
+          "alternative_name": "Mixed-Routing-65pct",
+          "scenario": "mixed_routing",
+          "substitute_fraction": 0.65,
+          "n_trials": 25,
+          "n_rejected": 25,
+          "empirical_power": 1.0,
+          "wilson_lower_95": 0.866808,
+          "wilson_ci_95": [
+            0.866808,
+            1.0
+          ],
+          "clopper_pearson_lower_95": 0.862815,
+          "clopper_pearson_ci_95": [
+            0.862815,
+            1.0
+          ]
+        }
+      ]
+    },
+    "adequate_calibration_gate_result": {
+      "compatible": true,
+      "calibration_id": "cal_bench_valid_25",
+      "calibration_name": "Predeclared Synthetic Calibration (Substituted & 65% Mixed, 25 trials)",
+      "is_demo_calibration": true,
+      "min_empirical_power": 1.0,
+      "min_trials": 25,
+      "min_wilson_lower_95": 0.866808,
+      "min_clopper_pearson_lower_95": 0.862815,
+      "alternatives": [
+        {
+          "alternative_name": "Substituted-100pct",
+          "alternative_description": "",
+          "n_trials": 25,
+          "n_rejected": 25,
+          "empirical_power": 1.0,
+          "wilson_lower_95": 0.866808,
+          "wilson_ci_95": [
+            0.866808,
+            1.0
+          ],
+          "clopper_pearson_lower_95": 0.862815,
+          "clopper_pearson_ci_95": [
+            0.862815,
+            1.0
+          ]
+        },
+        {
+          "alternative_name": "Mixed-Routing-65pct",
+          "alternative_description": "",
+          "n_trials": 25,
+          "n_rejected": 25,
+          "empirical_power": 1.0,
+          "wilson_lower_95": 0.866808,
+          "wilson_ci_95": [
+            0.866808,
+            1.0
+          ],
+          "clopper_pearson_lower_95": 0.862815,
+          "clopper_pearson_ci_95": [
+            0.862815,
+            1.0
+          ]
+        }
+      ],
+      "reason": "Verified compatible calibration 'Predeclared Synthetic Calibration (Substituted & 65% Mixed, 25 trials)' (recomputed min empirical power 100.0%, two-sided 95% Wilson lower bound 0.8668 >= 0.80, exact two-sided 95% Clopper-Pearson lower bound 0.8628 across >= 25 trials)."
+    },
+    "underpowered_alternative_calibration_artifact": {
+      "id": "cal_bench_underpowered_35pct",
+      "name": "Underpowered Alternative Calibration (Includes 35% Mixed at n=20, m=8)",
+      "score_mode": "local_logit_rank",
+      "probe_revision_id": "rev_builtin_screening_v1",
+      "probe_revision_hash": "builtin_v1",
+      "n_prompts": 20,
+      "m_reference": 8,
+      "max_output_tokens": 128,
+      "alpha": 0.01,
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "reference_model_descriptor": "synthetic-genuine-0",
+      "reference_identity": {
+        "reference_adapter_type": "synthetic_demo",
+        "reference_model_identifier": "synthetic-genuine-0",
+        "reference_base_url": "",
+        "reference_checkpoint_path": "",
+        "reference_checkpoint_revision": "main",
+        "reference_tokenizer_path": "",
+        "reference_chat_template": "",
+        "reference_precision": "float32",
+        "reference_device": "cpu",
+        "scorer_adapter_type": "synthetic_demo",
+        "scorer_model_identifier": "synthetic-genuine-0",
+        "scorer_checkpoint_path": "",
+        "scorer_checkpoint_revision": "main",
+        "scorer_tokenizer_path": "",
+        "scorer_chat_template": "",
+        "scorer_precision": "float32",
+        "scorer_device": "cpu"
+      },
+      "stat_engine_method": "cramer_von_mises_randomized_rank_mc",
+      "stat_engine_version": "1.0.0",
+      "is_demo": true,
+      "min_trials": 25,
+      "min_empirical_power": 0.56,
+      "alternatives": [
+        {
+          "alternative_name": "Substituted-100pct",
+          "scenario": "substituted",
+          "substitute_fraction": 1.0,
+          "n_trials": 25,
+          "n_rejected": 25,
+          "empirical_power": 1.0,
+          "wilson_lower_95": 0.866808,
+          "wilson_ci_95": [
+            0.866808,
+            1.0
+          ],
+          "clopper_pearson_lower_95": 0.862815,
+          "clopper_pearson_ci_95": [
+            0.862815,
+            1.0
+          ]
+        },
+        {
+          "alternative_name": "Mixed-Routing-65pct",
+          "scenario": "mixed_routing",
+          "substitute_fraction": 0.65,
+          "n_trials": 25,
+          "n_rejected": 25,
+          "empirical_power": 1.0,
+          "wilson_lower_95": 0.866808,
+          "wilson_ci_95": [
+            0.866808,
+            1.0
+          ],
+          "clopper_pearson_lower_95": 0.862815,
+          "clopper_pearson_ci_95": [
+            0.862815,
+            1.0
+          ]
+        },
+        {
+          "alternative_name": "Mixed-Routing-35pct-Underpowered",
+          "scenario": "mixed_routing",
+          "substitute_fraction": 0.35,
+          "n_trials": 25,
+          "n_rejected": 14,
+          "empirical_power": 0.56,
+          "wilson_lower_95": 0.370673,
+          "wilson_ci_95": [
+            0.370673,
+            0.733344
+          ],
+          "clopper_pearson_lower_95": 0.349282,
+          "clopper_pearson_ci_95": [
+            0.349282,
+            0.755976
+          ]
+        }
+      ]
+    },
+    "underpowered_alternative_gate_result": {
+      "compatible": false,
+      "calibration_id": "cal_bench_underpowered_35pct",
+      "is_demo_calibration": true,
+      "issues": [
+        "calibration recomputed minimum empirical sensitivity (0.5600) is below threshold (0.80)",
+        "calibration recomputed 95% Wilson lower confidence bound (0.3707) is below required lower-confidence bound (0.80) for covered alternatives"
+      ],
+      "reason": "Attached calibration is incompatible: calibration recomputed minimum empirical sensitivity (0.5600) is below threshold (0.80); calibration recomputed 95% Wilson lower confidence bound (0.3707) is below required lower-confidence bound (0.80) for covered alternatives"
+    },
+    "inadequate_calibration_artifact": {
+      "id": "cal_bench_inadequate_5",
+      "name": "Under-sampled Calibration (5 trials)",
+      "score_mode": "local_logit_rank",
+      "probe_revision_id": "rev_builtin_screening_v1",
+      "probe_revision_hash": "builtin_v1",
+      "n_prompts": 20,
+      "m_reference": 8,
+      "max_output_tokens": 128,
+      "alpha": 0.01,
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "reference_model_descriptor": "synthetic-genuine-0",
+      "reference_identity": {
+        "reference_adapter_type": "synthetic_demo",
+        "reference_model_identifier": "synthetic-genuine-0",
+        "reference_base_url": "",
+        "reference_checkpoint_path": "",
+        "reference_checkpoint_revision": "main",
+        "reference_tokenizer_path": "",
+        "reference_chat_template": "",
+        "reference_precision": "float32",
+        "reference_device": "cpu",
+        "scorer_adapter_type": "synthetic_demo",
+        "scorer_model_identifier": "synthetic-genuine-0",
+        "scorer_checkpoint_path": "",
+        "scorer_checkpoint_revision": "main",
+        "scorer_tokenizer_path": "",
+        "scorer_chat_template": "",
+        "scorer_precision": "float32",
+        "scorer_device": "cpu"
+      },
+      "stat_engine_method": "cramer_von_mises_randomized_rank_mc",
+      "stat_engine_version": "1.0.0",
+      "is_demo": true,
+      "min_trials": 5,
+      "min_empirical_power": 1.0,
+      "alternatives": [
+        {
+          "alternative_name": "Sub",
+          "n_trials": 5,
+          "n_rejected": 5,
+          "empirical_power": 1.0,
+          "wilson_lower_95": 0.565518,
+          "clopper_pearson_lower_95": 0.478176
+        }
+      ]
+    },
+    "inadequate_calibration_gate_result": {
+      "compatible": false,
+      "calibration_id": "cal_bench_inadequate_5",
+      "is_demo_calibration": true,
+      "issues": [
+        "calibration trial count (5) is below minimum required (20)",
+        "calibration recomputed 95% Wilson lower confidence bound (0.5655) is below required lower-confidence bound (0.80) for covered alternatives"
+      ],
+      "reason": "Attached calibration is incompatible: calibration trial count (5) is below minimum required (20); calibration recomputed 95% Wilson lower confidence bound (0.5655) is below required lower-confidence bound (0.80) for covered alternatives"
+    }
+  },
+  "evaluation_conditions": [
+    {
+      "condition_id": "genuine_null_logit_n20_m8",
+      "label": "Genuine Reference (Null False-Alarm Check)",
+      "scenario": "genuine",
+      "substitute_fraction": 0.0,
+      "score_mode": "local_logit_rank",
+      "n_prompts": 20,
+      "m_reference": 8,
+      "alpha": 0.01,
+      "n_trials": 30,
+      "queries_per_trial": 180,
+      "total_queries_across_trials": 5400,
+      "metric_role": "false_alarm_rate",
+      "rejections": 0,
+      "empirical_rate": 0.0,
+      "wilson_ci_95": [
+        0.0,
+        0.113513
+      ],
+      "clopper_pearson_ci_95": [
+        0.0,
+        0.115703
+      ],
+      "median_p_value": 0.5433,
+      "mean_cvm_statistic": 0.1551,
+      "mean_score_shift": -0.0091
+    },
+    {
+      "condition_id": "weak_alt_5pct_logit_n20_m8",
+      "label": "Weak Alternative (5% Mixed Routing \u2014 Near-Null Limit)",
+      "scenario": "mixed_routing",
+      "substitute_fraction": 0.05,
+      "score_mode": "local_logit_rank",
+      "n_prompts": 20,
+      "m_reference": 8,
+      "alpha": 0.01,
+      "n_trials": 30,
+      "queries_per_trial": 180,
+      "total_queries_across_trials": 5400,
+      "metric_role": "detection_power",
+      "rejections": 0,
+      "empirical_rate": 0.0,
+      "wilson_ci_95": [
+        0.0,
+        0.113513
+      ],
+      "clopper_pearson_ci_95": [
+        0.0,
+        0.115703
+      ],
+      "median_p_value": 0.54195,
+      "mean_cvm_statistic": 0.1383,
+      "mean_score_shift": 0.228
+    },
+    {
+      "condition_id": "mixed_15pct_logit_n20_m8",
+      "label": "Mixed Routing (15% Substitute Fraction)",
+      "scenario": "mixed_routing",
+      "substitute_fraction": 0.15,
+      "score_mode": "local_logit_rank",
+      "n_prompts": 20,
+      "m_reference": 8,
+      "alpha": 0.01,
+      "n_trials": 30,
+      "queries_per_trial": 180,
+      "total_queries_across_trials": 5400,
+      "metric_role": "detection_power",
+      "rejections": 3,
+      "empirical_rate": 0.1,
+      "wilson_ci_95": [
+        0.0346,
+        0.256211
+      ],
+      "clopper_pearson_ci_95": [
+        0.021117,
+        0.265288
+      ],
+      "median_p_value": 0.2273,
+      "mean_cvm_statistic": 0.3478,
+      "mean_score_shift": 0.7721
+    },
+    {
+      "condition_id": "mixed_35pct_logit_n20_m8",
+      "label": "Mixed Routing (35% Substitute Fraction)",
+      "scenario": "mixed_routing",
+      "substitute_fraction": 0.35,
+      "score_mode": "local_logit_rank",
+      "n_prompts": 20,
+      "m_reference": 8,
+      "alpha": 0.01,
+      "n_trials": 30,
+      "queries_per_trial": 180,
+      "total_queries_across_trials": 5400,
+      "metric_role": "detection_power",
+      "rejections": 15,
+      "empirical_rate": 0.5,
+      "wilson_ci_95": [
+        0.331541,
+        0.668459
+      ],
+      "clopper_pearson_ci_95": [
+        0.31297,
+        0.68703
+      ],
+      "median_p_value": 0.0106,
+      "mean_cvm_statistic": 0.9284,
+      "mean_score_shift": 1.6463
+    },
+    {
+      "condition_id": "mixed_65pct_logit_n20_m8",
+      "label": "Mixed Routing (65% Substitute Fraction)",
+      "scenario": "mixed_routing",
+      "substitute_fraction": 0.65,
+      "score_mode": "local_logit_rank",
+      "n_prompts": 20,
+      "m_reference": 8,
+      "alpha": 0.01,
+      "n_trials": 30,
+      "queries_per_trial": 180,
+      "total_queries_across_trials": 5400,
+      "metric_role": "detection_power",
+      "rejections": 30,
+      "empirical_rate": 1.0,
+      "wilson_ci_95": [
+        0.886487,
+        1.0
+      ],
+      "clopper_pearson_ci_95": [
+        0.884297,
+        1.0
+      ],
+      "median_p_value": 0.0001,
+      "mean_cvm_statistic": 2.555,
+      "mean_score_shift": 2.9564
+    },
+    {
+      "condition_id": "substituted_100pct_logit_n20_m8",
+      "label": "Full Substitution (100% Substitute Model)",
+      "scenario": "substituted",
+      "substitute_fraction": 1.0,
+      "score_mode": "local_logit_rank",
+      "n_prompts": 20,
+      "m_reference": 8,
+      "alpha": 0.01,
+      "n_trials": 30,
+      "queries_per_trial": 180,
+      "total_queries_across_trials": 5400,
+      "metric_role": "detection_power",
+      "rejections": 30,
+      "empirical_rate": 1.0,
+      "wilson_ci_95": [
+        0.886487,
+        1.0
+      ],
+      "clopper_pearson_ci_95": [
+        0.884297,
+        1.0
+      ],
+      "median_p_value": 0.0001,
+      "mean_cvm_statistic": 5.2696,
+      "mean_score_shift": 4.3181
+    },
+    {
+      "condition_id": "mixed_35pct_logit_low_budget_n10_m4",
+      "label": "Mixed Routing (35% Fraction, Reduced Budget n=10, m=4)",
+      "scenario": "mixed_routing",
+      "substitute_fraction": 0.35,
+      "score_mode": "local_logit_rank",
+      "n_prompts": 10,
+      "m_reference": 4,
+      "alpha": 0.01,
+      "n_trials": 30,
+      "queries_per_trial": 50,
+      "total_queries_across_trials": 1500,
+      "metric_role": "detection_power",
+      "rejections": 6,
+      "empirical_rate": 0.2,
+      "wilson_ci_95": [
+        0.095051,
+        0.373057
+      ],
+      "clopper_pearson_ci_95": [
+        0.077136,
+        0.385667
+      ],
+      "median_p_value": 0.0515,
+      "mean_cvm_statistic": 0.5089,
+      "mean_score_shift": 1.78
+    },
+    {
+      "condition_id": "substituted_100pct_length_only_n20_m8",
+      "label": "Full Substitution (Length-Only Fallback Mode n=20, m=8)",
+      "scenario": "substituted",
+      "substitute_fraction": 1.0,
+      "score_mode": "length_distribution_only",
+      "n_prompts": 20,
+      "m_reference": 8,
+      "alpha": 0.01,
+      "n_trials": 30,
+      "queries_per_trial": 180,
+      "total_queries_across_trials": 5400,
+      "metric_role": "detection_power",
+      "rejections": 30,
+      "empirical_rate": 1.0,
+      "wilson_ci_95": [
+        0.886487,
+        1.0
+      ],
+      "clopper_pearson_ci_95": [
+        0.884297,
+        1.0
+      ],
+      "median_p_value": 0.0001,
+      "mean_cvm_statistic": 5.2545,
+      "mean_score_shift": 290.4852
+    },
+    {
+      "condition_id": "genuine_null_length_only_n20_m8",
+      "label": "Genuine Reference (Length-Only Fallback Null Check)",
+      "scenario": "genuine",
+      "substitute_fraction": 0.0,
+      "score_mode": "length_distribution_only",
+      "n_prompts": 20,
+      "m_reference": 8,
+      "alpha": 0.01,
+      "n_trials": 30,
+      "queries_per_trial": 180,
+      "total_queries_across_trials": 5400,
+      "metric_role": "false_alarm_rate",
+      "rejections": 0,
+      "empirical_rate": 0.0,
+      "wilson_ci_95": [
+        0.0,
+        0.113513
+      ],
+      "clopper_pearson_ci_95": [
+        0.0,
+        0.115703
+      ],
+      "median_p_value": 0.60965,
+      "mean_cvm_statistic": 0.1518,
+      "mean_score_shift": 0.4323
+    }
+  ]
+}

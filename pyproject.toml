@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "modeltrace"
+version = "1.0.0"
+description = "ModelTrace — Know what your API is serving. Statistical auditing for open-weight model APIs."
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = {text = "MIT"}
+dependencies = [
+    "fastapi>=0.92.0,<1.0.0",
+    "starlette>=0.25.0,<0.38.0",
+    "pydantic>=1.10.26,<2.0.0",
+    "httpx>=0.23.3,<1.0.0",
+    "numpy>=1.24.0,<3.0.0",
+    "scipy>=1.10.0,<2.0.0",
+    "uvicorn>=0.17.6,<1.0.0",
+    "click>=8.1.0,<9.0.0",
+    "python-dotenv>=1.0.0,<2.0.0",
+]
+
+[project.optional-dependencies]
+orm = [
+    "sqlalchemy>=2.0.0,<3.0.0",
+]
+local-inference = [
+    "torch>=2.1.0",
+    "transformers>=4.38.0",
+    "safetensors>=0.4.0",
+]
+dev = [
+    "pytest>=7.4.0,<9.0.0",
+    "selenium>=4.8.0,<5.0.0",
+]
+
+[project.scripts]
+modeltrace = "modeltrace.cli:main"
+
+[tool.setuptools]
+packages = [
+    "modeltrace",
+    "modeltrace.adapters",
+    "modeltrace.api",
+    "modeltrace.db",
+    "modeltrace.services",
+    "modeltrace.utils",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

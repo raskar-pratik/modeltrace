@@ -1,0 +1,21 @@
+{
+  "audit_id": "aud_f9de80799191",
+  "is_demo": true,
+  "scenario": "substituted",
+  "score_mode": "local_logit_rank",
+  "execution_state": "COMPLETED",
+  "verdict": "INCONSISTENT",
+  "verdict_reason": "[DEMO SYNTHETIC] Tested behavior rejects the null hypothesis of exchangeability at alpha=0.0100 (Monte Carlo CvM p=0.00010). Note: behavioral divergence may reflect model substitution, quantization, chat template differences, hidden system prompts, or decoding differences.",
+  "cvm_statistic": 5.14000989164425,
+  "p_value": 0.0001,
+  "alpha": 0.01,
+  "export": {
+    "id": "exp_6f0ff28679b1",
+    "audit_id": "aud_f9de80799191",
+    "export_format": "json",
+    "file_path": "/tmp/tmpo3j2qgqt/exports/aud_f9de80799191_report.json",
+    "content_hash": "856bee9b9df4dfeff10abf70baf87f9c5faaf5f9793cf07e02f806074ac3ba54",
+    "byte_size": 399926,
+    "created_at": "2026-10-14T13:34:22.134479Z"
+  }
+}

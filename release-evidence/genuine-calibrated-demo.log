@@ -1,0 +1,21 @@
+{
+  "audit_id": "aud_da906bc81dde",
+  "is_demo": true,
+  "scenario": "genuine",
+  "score_mode": "local_logit_rank",
+  "execution_state": "COMPLETED",
+  "verdict": "CONSISTENT_WITHIN_TESTED_LIMITS",
+  "verdict_reason": "[DEMO SYNTHETIC] Non-rejection at alpha=0.0100 (p=0.38000) backed by compatible power calibration (Verified compatible calibration '[DEMO] DEMO Calibration (local_logit_rank, n=20, m=8)' (recomputed min empirical power 100.0%, two-sided 95% Wilson lower bound 0.8389 >= 0.80, exact two-sided 95% Clopper-Pearson lower bound 0.8316 across >= 20 trials).). Consistency holds only within tested prompts, sampling limits, and calibrated alternatives\u2014not proof of weights or provider intent.",
+  "cvm_statistic": 0.15473431885289352,
+  "p_value": 0.38,
+  "alpha": 0.01,
+  "export": {
+    "id": "exp_e1d0e059efeb",
+    "audit_id": "aud_da906bc81dde",
+    "export_format": "json",
+    "file_path": "/tmp/tmpo3j2qgqt/exports/aud_da906bc81dde_report.json",
+    "content_hash": "7292bf0ddd694af3c25da47a55c5b1e26b864ff41bbd906fbbc8456683d9d046",
+    "byte_size": 393468,
+    "created_at": "2026-10-14T13:34:34.541131Z"
+  }
+}

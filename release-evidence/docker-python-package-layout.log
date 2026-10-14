@@ -1,0 +1,16 @@
+Processing /tmp/tmp1ecmi530/runtime
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: modeltrace
+  Building wheel for modeltrace (pyproject.toml): started
+  Building wheel for modeltrace (pyproject.toml): finished with status 'done'
+  Created wheel for modeltrace: filename=modeltrace-1.0.0-py3-none-any.whl size=96250 sha256=3b4d7bfeaf457074dc5312fa99e6adbb7118f383ed131c843836c4958354f3de
+  Stored in directory: /tmp/pip-ephem-wheel-cache-464_7hcx/wheels/2a/49/3e/838f62c36b95a7dbec343e4ca9b7c919bbf5339c00ee114c7e
+Successfully built modeltrace
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip
