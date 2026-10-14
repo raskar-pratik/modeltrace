@@ -270,7 +270,10 @@ class TestBrowserEndToEndFlow(unittest.TestCase):
     @classmethod
     def _stop_server(cls) -> None:
         if hasattr(cls, "server_proc"):
-            cls.server_proc.terminate()
+            if os.name == "nt":
+                subprocess.run(["taskkill", "/PID", str(cls.server_proc.pid), "/T", "/F"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            else:
+                cls.server_proc.terminate()
             try:
                 cls.server_proc.wait(timeout=5)
             except subprocess.TimeoutExpired:

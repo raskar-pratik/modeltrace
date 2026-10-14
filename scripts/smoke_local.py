@@ -48,6 +48,9 @@ def main():
                 for path in ["/", "/audits", "/assets/app.js", "/assets/styles.css", "/favicon.svg", "/modeltrace-mark.svg", "/logo.svg"]:
                     with opener.open(base + path, timeout=5) as response:
                         data = response.read()
+                        if path.endswith(".svg"):
+                            assert response.headers.get_content_type() == "image/svg+xml", path
+                            assert b"<svg" in data, path
                     assert data, path
                     if path in ["/", "/audits"]:
                         assert b'<div id="root"></div>' in data
@@ -55,7 +58,11 @@ def main():
                 assert not (ROOT / "frontend/dist/UNSUITABLE_FOR_RELEASE.json").exists()
                 print(json.dumps({"status": "PASS", "health": health, "asset_bytes": sizes}, indent=2))
             finally:
-                proc.terminate()
+                if os.name == "nt":
+                    # Windows venv python.exe can launch a child interpreter; stop the entire owned tree.
+                    subprocess.run(["taskkill", "/PID", str(proc.pid), "/T", "/F"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                else:
+                    proc.terminate()
                 try:
                     proc.wait(timeout=5)
                 except subprocess.TimeoutExpired:

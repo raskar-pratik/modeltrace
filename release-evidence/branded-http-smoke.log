@@ -5,7 +5,7 @@
     "app_name": "ModelTrace",
     "tagline": "Know what your API is serving.",
     "version": "1.0.0",
-    "timestamp_utc": "2026-10-14T14:43:02.711873Z"
+    "timestamp_utc": "2026-10-14T14:47:34.459384Z"
   },
   "asset_bytes": {
     "/": 476,
@@ -13,7 +13,7 @@
     "/assets/app.js": 240159,
     "/assets/styles.css": 9675,
     "/favicon.svg": 734,
-    "/modeltrace-mark.svg": 476,
-    "/logo.svg": 476
+    "/modeltrace-mark.svg": 734,
+    "/logo.svg": 1203
   }
 }

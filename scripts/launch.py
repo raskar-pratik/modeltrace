@@ -114,7 +114,10 @@ def main() -> int:
     def _shutdown(signum: int, _frame: object) -> None:
         print(f"\n[ModelTrace Launcher] Caught signal {signum}; stopping server cleanly...")
         if proc.poll() is None:
-            proc.terminate()
+            if os.name == "nt":
+                subprocess.run(["taskkill", "/PID", str(proc.pid), "/T", "/F"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            else:
+                proc.terminate()
             try:
                 proc.wait(timeout=5.0)
             except subprocess.TimeoutExpired:

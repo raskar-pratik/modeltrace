@@ -265,8 +265,8 @@
     },
     {
       "path": "modeltrace/api/app.py",
-      "size_bytes": 21706,
-      "sha256": "a3203971382e1acbad1216a02474590db603c7d649d08fbcd50d89efe41f6347"
+      "size_bytes": 21890,
+      "sha256": "da81237d17ea0451e77c5802bdd44f2fb1f941af84cf8bd3fb5c6e150e225256"
     },
     {
       "path": "modeltrace/cli.py",
@@ -355,8 +355,8 @@
     },
     {
       "path": "release-evidence/branded-http-smoke.log",
-      "size_bytes": 415,
-      "sha256": "a130894c6930b0aa627d855973970a4dd9f93b7a852bee5d1eae4e7410dd9358"
+      "size_bytes": 416,
+      "sha256": "482993e4c7bf65dcdde735d70825cb2863b91b47122f286b0c8562f78e4daf56"
     },
     {
       "path": "release-evidence/branded-local-tests.log",
@@ -520,8 +520,8 @@
     },
     {
       "path": "scripts/launch.py",
-      "size_bytes": 4623,
-      "sha256": "ed1c9ed8ff6ccbbfa2870543fdb0d7c22d7a2b0c93254fff436b2d1243b7ec5f"
+      "size_bytes": 4811,
+      "sha256": "042d9fa5dae6ebde75c39afb2fc604c541ca7c1f4e9e904d4b847c92d761d098"
     },
     {
       "path": "scripts/run_benchmark.py",
@@ -540,8 +540,8 @@
     },
     {
       "path": "scripts/smoke_local.py",
-      "size_bytes": 2665,
-      "sha256": "73eae02b680029a56fa45802a495a5aee7d2312bedd0230f25ef4a8a56137fe2"
+      "size_bytes": 3174,
+      "sha256": "feaf186caa048370337b8de295ff08d992e99a3c8fe7c178ba8fa1501d11bb8a"
     },
     {
       "path": "tests/__init__.py",
@@ -580,8 +580,8 @@
     },
     {
       "path": "tests/test_ui_e2e_browser.py",
-      "size_bytes": 23839,
-      "sha256": "e6d3500c8fd984d94a32da1cbece77c0134d7fee8f5fb96fa41a075168048394"
+      "size_bytes": 24038,
+      "sha256": "70f856d1022dbe94438ad2fe7b60552a65e83a4147ddac614ecdb0848c93196e"
     }
   ]
 }

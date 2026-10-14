@@ -488,16 +488,19 @@ def create_app(
     dist_dir = ROOT_DIR / "frontend" / "dist"
 
     @app.get("/favicon.svg", include_in_schema=False)
-    def serve_favicon() -> Response:
-        fav_path = dist_dir / "favicon.svg"
+    @app.get("/logo.svg", include_in_schema=False)
+    @app.get("/modeltrace-mark.svg", include_in_schema=False)
+    def serve_favicon(request: Request) -> Response:
+        asset_name = request.url.path.rsplit("/", 1)[-1]
+        fav_path = dist_dir / asset_name
         if not fav_path.is_file():
-            fav_path = ROOT_DIR / "frontend" / "public" / "favicon.svg"
+            fav_path = ROOT_DIR / "frontend" / "public" / asset_name
         if fav_path.is_file():
             return Response(
                 content=fav_path.read_text(encoding="utf-8"),
                 media_type="image/svg+xml",
             )
-        raise HTTPException(status_code=404, detail="Favicon not found")
+        raise HTTPException(status_code=404, detail="Brand asset not found")
 
     @app.get("/assets/{asset_name}", include_in_schema=False)
     def serve_asset(asset_name: str) -> Response:
