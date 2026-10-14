@@ -107,7 +107,3 @@ docker compose up --build
 The host port binds only to 127.0.0.1. If the container cannot write the mounted directories, grant the container user write access to those directories. The Docker image build, health endpoint, production assets, and bounded synthetic audit are exercised in release CI.
 
 ModelTrace 1.0 is a **single-user local product**. It runs on your machine and keeps provider secrets in the backend. Internet-facing, multi-user hosting is outside this product's deployment scope.
-
-## Logo
-
-The branching **M** connects a reference trajectory with an observed trace. The charcoal, warm ivory, and muted brass palette is shared across the app mark, favicon, and README. Scalable assets are in [frontend/public](frontend/public) and [docs/assets](docs/assets).
