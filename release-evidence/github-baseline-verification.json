@@ -1,0 +1,12 @@
+{
+  "run_id": 38580108372,
+  "commit": "31a4712f52d4e4182d30dfa9f099d1b3940c986d",
+  "url": "https://github.com/raskar-pratik/modeltrace/actions/runs/38580108372",
+  "conclusion": "success",
+  "linux_and_browser": {
+    "conclusion": "success",
+    "passed": 28,
+    "skipped_optional_huggingface": 1
+  },
+  "docker_build_and_smoke": "success"
+}

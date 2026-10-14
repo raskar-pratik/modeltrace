@@ -1,8 +1,33 @@
-# ModelTrace 1.0 — experimental localhost preview
+<p align="center">
+  <img src="docs/assets/modeltrace-logo.svg" width="760" alt="ModelTrace — Know what your API is serving." />
+</p>
 
-**Know what your API is serving.** ModelTrace compares an LLM API's observable behavior with a trusted reference under a frozen audit configuration.
+<p align="center">
+  <a href="https://github.com/raskar-pratik/modeltrace/actions/workflows/ci.yml"><img src="https://github.com/raskar-pratik/modeltrace/actions/workflows/ci.yml/badge.svg" alt="Release CI" /></a>
+  <img src="https://img.shields.io/badge/version-1.0.0-232522" alt="Version 1.0.0" />
+  <img src="https://img.shields.io/badge/runs-locally-CAB38A" alt="Runs locally" />
+</p>
 
-This release includes the Python source, real React/TypeScript/Vite production assets, an npm-generated dependency lock, tests, CLI, and verification logs. See `VALIDATION_REPORT.md` for executed checks and remaining verification limits.
+# ModelTrace
+
+### Know what your API is serving.
+
+**Version 1.0.0 · A local LLM auditing product**
+
+ModelTrace compares an LLM API's observable behavior with a trusted reference under a frozen audit configuration.
+
+Audit a target endpoint, inspect its evidence, and export a report from one workbench. ModelTrace includes:
+
+| Capability | What you get |
+|---|---|
+| Endpoint profiles | OpenAI-compatible targets and trusted API or local references |
+| Reproducible audits | Frozen prompts, profiles, seeds, sampling settings, and request budgets |
+| Statistical evaluation | Randomized ranks, Monte Carlo CvM testing, and matched power calibration |
+| Evidence explorer | Stored responses, rank distributions, per-prompt shifts, and audit history |
+| Reports and CLI | JSON, CSV, and HTML exports; controlled demos without provider keys |
+| Local deployment | React workbench and Python API on one origin; Windows/POSIX setup and Docker |
+
+The release pipeline verifies the real TypeScript/Vite build, the connected browser workflow, Docker health and assets, and deterministic software tests. See [VALIDATION_REPORT.md](VALIDATION_REPORT.md) for dated evidence and the precise verification scope.
 
 ## Start on Linux or macOS
 
@@ -24,7 +49,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\setup.ps1
 .\.venv\Scripts\python.exe .\scripts\launch.py
 ```
 
-Windows setup has native-process exit-code guards. Actual Windows execution was not available during this release's verification.
+The PowerShell setup checks every native-process exit code and stops on a failed install, typecheck, build, or migration. The release pipeline exercises native Windows setup and HTTP delivery.
 
 ## CLI demo
 
@@ -56,7 +81,7 @@ For a local checkpoint, install the optional adapter dependencies:
 .venv/bin/python3 -m pip install -e '.[local-inference]'
 ```
 
-Use a trusted pinned checkpoint and tokenizer with a valid native chat template or a validated override. Actual HuggingFace execution was not verified in this release environment; mocked sharded-adapter tests are distinct from it. See `SECURITY.md` and `STATISTICAL_METHOD.md` for the detailed contracts.
+Use a trusted pinned checkpoint and tokenizer with a valid native chat template or a validated override. The release pipeline exercises actual HuggingFace generation and teacher-forced scoring against a small locally constructed checkpoint. Large third-party checkpoints still require their own compatibility checks. See `SECURITY.md` and `STATISTICAL_METHOD.md` for the detailed contracts.
 
 ## Verify and rebuild
 
@@ -69,7 +94,7 @@ npm --prefix frontend run build
 .venv/bin/python3 scripts/smoke_local.py
 ```
 
-For mandatory browser verification, provision matching Chrome and ChromeDriver, export `MODELTRACE_CHROME_BINARY` and `MODELTRACE_CHROMEDRIVER_PATH`, and set `MODELTRACE_REQUIRE_BROWSER=1` before pytest. CI provisions these binaries and treats their absence as a failure. It also runs a TypeScript negative control and builds/smokes the Docker image. The workflow is included but has not been executed on GitHub from this session.
+For mandatory browser verification, provision matching Chrome and ChromeDriver, export `MODELTRACE_CHROME_BINARY` and `MODELTRACE_CHROMEDRIVER_PATH`, and set `MODELTRACE_REQUIRE_BROWSER=1` before pytest. CI provisions these binaries and treats their absence as a failure. It also runs a TypeScript negative control and builds/smokes the Docker image. Native Windows setup and actual local HuggingFace execution have dedicated jobs in the same workflow.
 
 ## Docker
 
@@ -79,6 +104,10 @@ mkdir -p data exports
 docker compose up --build
 ```
 
-The host port binds only to 127.0.0.1. If the container cannot write the mounted directories, grant the container user write access to those directories. Docker build/run was not available in the verification environment.
+The host port binds only to 127.0.0.1. If the container cannot write the mounted directories, grant the container user write access to those directories. The Docker image build, health endpoint, production assets, and bounded synthetic audit are exercised in release CI.
 
-This release is a **single-user localhost preview**. A public multi-user service needs a separate hosting/authentication design and release verification.
+ModelTrace 1.0 is a **single-user local product**. It runs on your machine and keeps provider secrets in the backend. Internet-facing, multi-user hosting is outside this product's deployment scope.
+
+## Logo
+
+The branching **M** connects a reference trajectory with an observed trace. The charcoal, warm ivory, and muted brass palette is shared across the app mark, favicon, and README. Scalable assets are in [frontend/public](frontend/public) and [docs/assets](docs/assets).

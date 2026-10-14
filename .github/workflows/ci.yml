@@ -1,4 +1,4 @@
-name: ModelTrace V1 CI
+name: ModelTrace Release CI
 
 on:
   push:
@@ -107,6 +107,14 @@ jobs:
           .venv/bin/python3 -m pip check
           .venv/bin/pytest -v
 
+      - name: Upload browser screenshots and test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: modeltrace-browser-evidence
+          path: docs/screenshots/
+          if-no-files-found: warn
+
       - name: Run separated-seed synthetic benchmark smoke check
         run: |
           .venv/bin/python3 scripts/run_benchmark.py --eval-trials 10 --cal-trials 25 --output-dir ./exports
@@ -156,3 +164,57 @@ jobs:
       - name: Stop verification container
         if: always()
         run: docker rm -f modeltrace-verify || true
+
+  windows-verification:
+    name: Native Windows Setup, Failure Guards and HTTP Delivery
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Run the real PowerShell setup
+        shell: pwsh
+        run: ./scripts/setup.ps1
+      - name: Check Windows package, launcher, native failure guard and HTTP delivery
+        shell: pwsh
+        run: |
+          & ./.venv/Scripts/python.exe -m pip check
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & ./.venv/Scripts/python.exe -m pytest tests/test_configuration.py tests/test_ui_e2e_browser.py::TestSetupFailFastAndBuildGuards -v
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & ./.venv/Scripts/python.exe scripts/launch.py --check-only
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & ./.venv/Scripts/python.exe scripts/smoke_local.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & ./.venv/Scripts/modeltrace.exe demo-audit --scenario substituted --n-prompts 8 --m-reference 4 --seed 424242 --db-path ./data/windows-demo.db
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+  huggingface-verification:
+    name: Actual Local HuggingFace Generation and Teacher-Forced Scoring
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install controlled CPU inference stack
+        run: |
+          python -m venv .venv
+          .venv/bin/python -m pip install -r requirements.lock
+          .venv/bin/python -m pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+          .venv/bin/python -m pip install transformers==4.46.3 safetensors==0.4.5
+          .venv/bin/python -m pip install --no-deps -e .
+          .venv/bin/python -m pip check
+      - name: Run the actual adapter against a locally constructed checkpoint
+        run: |
+          .venv/bin/python -c "import torch, transformers; print(torch.__version__, transformers.__version__)"
+          .venv/bin/python -m pytest tests/test_local_transformers_and_api_cli.py::TestLocalTransformersAndApiCli::test_live_huggingface_tiny_random_checkpoint_if_installed -v

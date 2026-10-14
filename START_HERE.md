@@ -20,4 +20,4 @@ powershell -ExecutionPolicy Bypass -File .\scripts\setup.ps1
 
 Open http://127.0.0.1:8000 → New Audit → Quick Demo: Substituted. The genuine and mixed demos are available beside it. DEMO results are synthetic, not real LLM accuracy measurements.
 
-Stop the server with Ctrl+C. Read README.md for real-endpoint setup, optional checkpoint support, and test commands. Read VALIDATION_REPORT.md before treating this preview as a verified deployment. Browser, Docker, native Windows, and actual HuggingFace checks still require a suitable runner.
+Stop the server with Ctrl+C. Read README.md for real-endpoint setup, optional checkpoint support, and test commands. Read VALIDATION_REPORT.md before treating this release as a verified deployment. The GitHub release workflow runs browser, Docker, native Windows, and local HuggingFace checks. See the validation report for the dated results.

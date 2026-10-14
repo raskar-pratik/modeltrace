@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 from typing import Any, List
+from dotenv import load_dotenv
 
 APP_NAME = "ModelTrace"
 APP_TAGLINE = "Know what your API is serving."
@@ -50,25 +51,23 @@ class Settings:
         )
         raw_outbound = os.environ.get(
             "MODELTRACE_ALLOWED_OUTBOUND_ORIGINS",
-            "https://api.openai.com:443,https://api.together.xyz:443",
+            os.environ.get("MODELTRACE_DEFAULT_ALLOWED_OUTBOUND_ORIGINS", "https://api.openai.com:443,https://api.together.xyz:443"),
         )
         self.default_allowed_outbound_origins: List[str] = [
             o.strip() for o in raw_outbound.split(",") if o.strip()
         ]
         raw_local = os.environ.get(
             "MODELTRACE_ALLOWED_LOCAL_INFERENCE_ORIGINS",
-            "http://127.0.0.1:11434,http://127.0.0.1:8080",
+            os.environ.get("MODELTRACE_DEFAULT_ALLOWED_LOCAL_ORIGINS", "http://127.0.0.1:11434,http://127.0.0.1:8080"),
         )
         self.default_allowed_local_origins: List[str] = [
             o.strip() for o in raw_local.split(",") if o.strip()
         ]
-        self.allowed_frontend_origins: List[str] = [
-            "http://127.0.0.1:5173",
-            "http://localhost:5173",
-            "http://127.0.0.1:8000",
-            "http://localhost:8000",
-            "http://testserver",
-        ]
+        self.allowed_frontend_origins: List[str] = [o.strip() for o in os.environ.get(
+            "MODELTRACE_ALLOWED_FRONTEND_ORIGINS",
+            "http://127.0.0.1:5173,http://localhost:5173,http://127.0.0.1:8000,http://localhost:8000,http://testserver",
+        ).split(",") if o.strip()]
+        self.max_upload_bytes: int = int(os.environ.get("MODELTRACE_MAX_UPLOAD_BYTES", "2097152"))
         self.max_response_bytes: int = int(
             os.environ.get("MODELTRACE_MAX_RESPONSE_BYTES", str(1024 * 1024))
         )
@@ -76,4 +75,5 @@ class Settings:
 
 def get_env_settings() -> Settings:
     """Load current environment settings."""
+    load_dotenv(ROOT_DIR / ".env", override=False)
     return Settings()

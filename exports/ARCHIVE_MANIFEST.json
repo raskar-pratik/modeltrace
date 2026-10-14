@@ -1,6 +1,6 @@
 {
   "release_version": "1.0.0",
-  "scope": "experimental single-user localhost preview",
+  "scope": "single-user local auditing product",
   "manifest_self_excluded": true,
   "files": [
     {
@@ -10,23 +10,23 @@
     },
     {
       "path": ".env.example",
-      "size_bytes": 1355,
-      "sha256": "1a421c3cbe26d726347eab2f1d7f7b39d604dc8a6ff089dcb0e01c2ce823c589"
+      "size_bytes": 1213,
+      "sha256": "0905537f175e0867b5ee14aaf6921362895a6f865e1cbecea39853f76679b25e"
     },
     {
       "path": ".github/workflows/ci.yml",
-      "size_bytes": 6272,
-      "sha256": "7ce1fde92bf8f34d4052bd0c2741c871622e3b5d274560c1046a3f39a4c9a377"
+      "size_bytes": 9039,
+      "sha256": "841c5a3f78ca9fd8aef93f807a0e22109553a6c9d06a2f0793a2b8cf11f02b2e"
     },
     {
       "path": ".gitignore",
-      "size_bytes": 500,
-      "sha256": "876c199ba402d2777f7d65e436d51b3003976468d1c8ff3779f10712148104d5"
+      "size_bytes": 523,
+      "sha256": "21b609e58273498535d9f6f219637f7aff48055aaf6adc5872ef5e23956d8ceb"
     },
     {
       "path": "ACCEPTANCE.md",
-      "size_bytes": 659,
-      "sha256": "8bfb92c33b2ca77deadd126dfe8a9d0c09421e59d3c3948fe0b29a57e3c73f6d"
+      "size_bytes": 783,
+      "sha256": "396f7c2de56cc9ae5eaa3d24edb1abc17d8952cec554829d3e6bcd42d849b275"
     },
     {
       "path": "ARCHITECTURE.md",
@@ -35,8 +35,8 @@
     },
     {
       "path": "BUILD_STATE.md",
-      "size_bytes": 582,
-      "sha256": "dcb4daf912ed3cb047b82060f4e728fcbe572e4bc4b091b686fe3a737f4b6a0e"
+      "size_bytes": 941,
+      "sha256": "51d7e6eec11339cab5c6cb3eeb810ce95beb80cbcba1befc5e48c293b6c703e9"
     },
     {
       "path": "DECISIONS.md",
@@ -55,8 +55,8 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 4736,
-      "sha256": "25c247897a6ad0db0a3b6c8c7021627f182b0bb7b25184b76c65fb6c0f7f5eb1"
+      "size_bytes": 6563,
+      "sha256": "4e010fce6d31a573dd342d7441e4e749056b7c839a67a7add3804cabe49ba8db"
     },
     {
       "path": "SECURITY.md",
@@ -70,8 +70,8 @@
     },
     {
       "path": "START_HERE.md",
-      "size_bytes": 956,
-      "sha256": "b06920a7f866de6b91b3573cbf7c99e8c4653a84ed95859da955803c3c385a8e"
+      "size_bytes": 1005,
+      "sha256": "108d985309d1a8578d59b867ff14a4741837bad225720babd11ad7cfe9212383"
     },
     {
       "path": "STATISTICAL_METHOD.md",
@@ -80,8 +80,8 @@
     },
     {
       "path": "VALIDATION_REPORT.md",
-      "size_bytes": 7434,
-      "sha256": "674a98c6ebc91b8ff1412f9007e08b17fcfe178201214bedf1071f484def58bd"
+      "size_bytes": 8312,
+      "sha256": "04bc6cafd480f84adb7dbc9bf015cb8c74fb0b8d44dc059d8af655d1deb7f7c9"
     },
     {
       "path": "docker-compose.yml",
@@ -92,6 +92,11 @@
       "path": "docs/DECISIONS.md",
       "size_bytes": 8852,
       "sha256": "7a7911b3a68b76a8f591ea52a3621f90c4631683ce7e35991f6e69622edaac5d"
+    },
+    {
+      "path": "docs/assets/modeltrace-logo.svg",
+      "size_bytes": 1203,
+      "sha256": "45716f88d1c6cdb35958e48191456f10951d79f9136ecc3ccab47cb2eed2946f"
     },
     {
       "path": "exports/measured_benchmark_v1.json",
@@ -105,8 +110,8 @@
     },
     {
       "path": "frontend/dist/assets/app.js",
-      "size_bytes": 240651,
-      "sha256": "137b873c8d7a69586460f39ffe988ba98151db5cac75b961e0557e7dd8411296"
+      "size_bytes": 240159,
+      "sha256": "5c838c0dd0e2e3f76953d5f2dfdca236c269593142a9f67bca2eb28b0c0dec5d"
     },
     {
       "path": "frontend/dist/assets/styles.css",
@@ -115,8 +120,8 @@
     },
     {
       "path": "frontend/dist/favicon.svg",
-      "size_bytes": 603,
-      "sha256": "87d5f29af227c68f9e5a2467ba8ac8ccf235d1d98e53545dd506a859511fb8f1"
+      "size_bytes": 734,
+      "sha256": "623a021162ab4f59ce6340bd4de15c57f7e783021bf6e272c1ab0af84a0c26db"
     },
     {
       "path": "frontend/dist/index.html",
@@ -125,8 +130,13 @@
     },
     {
       "path": "frontend/dist/logo.svg",
-      "size_bytes": 771,
-      "sha256": "df708be98ecbe52bce5e39ae5d5591be46b2d76a55d5a3de0f348a4843970c89"
+      "size_bytes": 1203,
+      "sha256": "45716f88d1c6cdb35958e48191456f10951d79f9136ecc3ccab47cb2eed2946f"
+    },
+    {
+      "path": "frontend/dist/modeltrace-mark.svg",
+      "size_bytes": 734,
+      "sha256": "623a021162ab4f59ce6340bd4de15c57f7e783021bf6e272c1ab0af84a0c26db"
     },
     {
       "path": "frontend/index.html",
@@ -145,13 +155,18 @@
     },
     {
       "path": "frontend/public/favicon.svg",
-      "size_bytes": 603,
-      "sha256": "87d5f29af227c68f9e5a2467ba8ac8ccf235d1d98e53545dd506a859511fb8f1"
+      "size_bytes": 734,
+      "sha256": "623a021162ab4f59ce6340bd4de15c57f7e783021bf6e272c1ab0af84a0c26db"
     },
     {
       "path": "frontend/public/logo.svg",
-      "size_bytes": 771,
-      "sha256": "df708be98ecbe52bce5e39ae5d5591be46b2d76a55d5a3de0f348a4843970c89"
+      "size_bytes": 1203,
+      "sha256": "45716f88d1c6cdb35958e48191456f10951d79f9136ecc3ccab47cb2eed2946f"
+    },
+    {
+      "path": "frontend/public/modeltrace-mark.svg",
+      "size_bytes": 734,
+      "sha256": "623a021162ab4f59ce6340bd4de15c57f7e783021bf6e272c1ab0af84a0c26db"
     },
     {
       "path": "frontend/src/App.tsx",
@@ -165,8 +180,8 @@
     },
     {
       "path": "frontend/src/components/BrandAndUI.tsx",
-      "size_bytes": 11869,
-      "sha256": "cdbaa5dde27c96e7c734dbf05aa984a3301c01cb991aa1852de513887dc1dc02"
+      "size_bytes": 11192,
+      "sha256": "05a972c7e430811079a83cf72d15ea8950acf27a09d02b31f3647de1c77d6886"
     },
     {
       "path": "frontend/src/main.tsx",
@@ -260,8 +275,8 @@
     },
     {
       "path": "modeltrace/config.py",
-      "size_bytes": 2769,
-      "sha256": "1635b4494c087ca4e1819e19147e103e429d2d7a9ebc76e3d41b0cccdd95b5fd"
+      "size_bytes": 3123,
+      "sha256": "1434078373a4f27b18c1feb77b2a5b7310f24558d6d5d59af999ba5980903ad4"
     },
     {
       "path": "modeltrace/db/__init__.py",
@@ -339,6 +354,21 @@
       "sha256": "7006f7480996ea7d76f2fab2b7e99853ceaba4dd1fc620a9fa895a48cf0ed228"
     },
     {
+      "path": "release-evidence/branded-http-smoke.log",
+      "size_bytes": 415,
+      "sha256": "a130894c6930b0aa627d855973970a4dd9f93b7a852bee5d1eae4e7410dd9358"
+    },
+    {
+      "path": "release-evidence/branded-local-tests.log",
+      "size_bytes": 135,
+      "sha256": "d2e923c7d0ed0e79fa1b89c5fbc606ac8d5ef84b2f3b53c48bcf53f38e0c13dc"
+    },
+    {
+      "path": "release-evidence/branded-production-build.log",
+      "size_bytes": 462,
+      "sha256": "178324fcede1dba33463a311bdedea09d6bcbad3c544c736d91dd05ca380dfa2"
+    },
+    {
       "path": "release-evidence/browser-first.log",
       "size_bytes": 2814,
       "sha256": "d0aa023eb01d319812a390336be66c9bccc28d23d26c76767d97a6940e3d58f1"
@@ -402,6 +432,11 @@
       "path": "release-evidence/genuine-uncalibrated-demo.log",
       "size_bytes": 897,
       "sha256": "efc2f7a27ac90aa029e63cba4c7606a3503add6c0afdecd7450637dccd02db6e"
+    },
+    {
+      "path": "release-evidence/github-baseline-verification.json",
+      "size_bytes": 346,
+      "sha256": "cc18058741f30f6f5a7aaac99f8624329c5f5975f6992061401cf6e8616a334b"
     },
     {
       "path": "release-evidence/launcher.log",
@@ -505,13 +540,18 @@
     },
     {
       "path": "scripts/smoke_local.py",
-      "size_bytes": 2628,
-      "sha256": "d1d2a1604cbafa149b6a020dbc8db1fd23d887a228af5440c5898bebfb76feac"
+      "size_bytes": 2665,
+      "sha256": "73eae02b680029a56fa45802a495a5aee7d2312bedd0230f25ef4a8a56137fe2"
     },
     {
       "path": "tests/__init__.py",
       "size_bytes": 1095,
       "sha256": "eba9e22a74cfc453a9743afbe6d90c9c85847d723785e3120e6723332319ea80"
+    },
+    {
+      "path": "tests/test_configuration.py",
+      "size_bytes": 2064,
+      "sha256": "36776ff14b7a0d6aaf91c17fadaccab4182dcda015b956f28ec96ee26ad54f7e"
     },
     {
       "path": "tests/test_http_adapter_and_worker.py",
@@ -520,8 +560,8 @@
     },
     {
       "path": "tests/test_local_transformers_and_api_cli.py",
-      "size_bytes": 18852,
-      "sha256": "29e4fe1c2728ae070fb6e0d1712c1613e9cc8cc20376d3339e2703d40a06e45f"
+      "size_bytes": 18884,
+      "sha256": "b6b8ed1645d8b49a43a7bbf6130a6c1170d76e01d72ba0d0d0251dce65609659"
     },
     {
       "path": "tests/test_migrations_and_db.py",
@@ -540,8 +580,8 @@
     },
     {
       "path": "tests/test_ui_e2e_browser.py",
-      "size_bytes": 22776,
-      "sha256": "4a6d736145c916f02f6e275bea39601d43761ec9b6b8d29a7642544e463011d6"
+      "size_bytes": 23839,
+      "sha256": "e6d3500c8fd984d94a32da1cbece77c0134d7fee8f5fb96fa41a075168048394"
     }
   ]
 }

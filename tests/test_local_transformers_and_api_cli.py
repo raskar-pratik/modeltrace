@@ -249,6 +249,7 @@ class TestLocalTransformersAndApiCli(unittest.TestCase):
         cfg = GPT2Config(
             vocab_size=64, n_positions=64, n_embd=16, n_layer=1, n_head=2, pad_token_id=0, bos_token_id=1, eos_token_id=2
         )
+        torch.manual_seed(2026)
         model = GPT2LMHeadModel(cfg)
         model.save_pretrained(str(ckpt_dir))
 

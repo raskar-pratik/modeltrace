@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" role="img" aria-labelledby="title desc">
+  <title id="title">ModelTrace — Know what your API is serving.</title>
+  <desc id="desc">ModelTrace logo with a branching M trace and an editorial wordmark.</desc>
+  <rect width="900" height="240" rx="20" fill="#F7F6F2"/>
+  <g transform="translate(62 52)">
+    <rect x="4" y="4" width="120" height="120" rx="28" fill="#232522"/>
+    <path d="M24 94V36L58 72L92 36V94" fill="none" stroke="#F7F6F2" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M58 72L106 24" fill="none" stroke="#CAB38A" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="24" cy="36" r="7" fill="#F7F6F2"/>
+    <circle cx="92" cy="36" r="7" fill="#F7F6F2"/>
+    <circle cx="58" cy="72" r="7" fill="#F7F6F2"/>
+    <circle cx="106" cy="24" r="8" fill="#CAB38A"/>
+  </g>
+  <text x="222" y="126" fill="#232522" font-family="Georgia, 'Times New Roman', serif" font-size="70" letter-spacing="-2.5">ModelTrace</text>
+  <text x="225" y="165" fill="#65685E" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="600" letter-spacing="2.3">KNOW WHAT YOUR API IS SERVING.</text>
+</svg>

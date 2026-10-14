@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">ModelTrace</title>
+  <desc id="desc">An M formed by a reference path and a branching observed trace.</desc>
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="#232522"/>
+  <path d="M24 94V36L58 72L92 36V94" fill="none" stroke="#F7F6F2" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M58 72L106 24" fill="none" stroke="#CAB38A" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="24" cy="36" r="7" fill="#F7F6F2"/>
+  <circle cx="92" cy="36" r="7" fill="#F7F6F2"/>
+  <circle cx="58" cy="72" r="7" fill="#F7F6F2"/>
+  <circle cx="106" cy="24" r="8" fill="#CAB38A"/>
+</svg>

@@ -35,3 +35,4 @@ data/local_models/*
 # Frontend dependencies
 frontend/node_modules/
 node_modules/
+exports/aud_*_report.*

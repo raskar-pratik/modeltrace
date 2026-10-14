@@ -45,7 +45,7 @@ def main():
                     raise RuntimeError(log.read())
                 assert health["status"] == "ok"
                 sizes = {}
-                for path in ["/", "/audits", "/assets/app.js", "/assets/styles.css", "/favicon.svg"]:
+                for path in ["/", "/audits", "/assets/app.js", "/assets/styles.css", "/favicon.svg", "/modeltrace-mark.svg", "/logo.svg"]:
                     with opener.open(base + path, timeout=5) as response:
                         data = response.read()
                     assert data, path

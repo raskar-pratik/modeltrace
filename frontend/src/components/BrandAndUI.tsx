@@ -10,44 +10,8 @@ import React from 'react';
 import { AuditVerdict, ExecutionState, PromptScore, ScoreMode } from '../types/api';
 
 export function BranchingMIcon(props: { size?: number }) {
-  const sz = props.size || 32;
-  return (
-    <svg
-      width={sz}
-      height={sz}
-      viewBox="0 0 64 64"
-      fill="none"
-      aria-hidden="true"
-      style={{ flexShrink: 0 }}
-    >
-      <rect
-        x="2"
-        y="2"
-        width="60"
-        height="60"
-        rx="10"
-        fill="#F7F6F3"
-        stroke="#111111"
-        stroke-width="2.5"
-      />
-      <path
-        d="M14 48V18L26 34L38 18V48"
-        stroke="#111111"
-        stroke-width="4"
-        stroke-linecap="square"
-        stroke-linejoin="miter"
-      />
-      <path
-        d="M38 28L50 18V48"
-        stroke="#1F6C9F"
-        stroke-width="3.5"
-        stroke-linecap="square"
-        stroke-dasharray="3 2"
-      />
-      <circle cx="50" cy="18" r="4" fill="#9F2F2D" />
-      <circle cx="38" cy="18" r="3.5" fill="#111111" />
-    </svg>
-  );
+  const size = props.size || 32;
+  return <img src="/modeltrace-mark.svg" width={size} height={size} alt="" aria-hidden="true" style={{ flexShrink: 0 }} />;
 }
 
 export function VerdictBadge(props: { verdict: AuditVerdict | string }) {

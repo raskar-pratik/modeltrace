@@ -1,6 +1,16 @@
 # ModelTrace 1.0 — independent release verification
 
-Verified on 14 October 2026. Release scope: **experimental single-user localhost preview**. Public hosting was not configured or published.
+Verified on 14 October 2026. Release scope: **versioned single-user local auditing product**. Public hosting was not configured or published.
+
+## GitHub release verification update
+
+The former preview label reflected incomplete verification in the local sandbox. GitHub CI has since completed successfully for commit `31a4712f52d4e4182d30dfa9f099d1b3940c986d`:
+
+- [Successful release workflow](https://github.com/raskar-pratik/modeltrace/actions/runs/38580108372), completed 2026-10-14.
+- Linux real React/TypeScript/Vite build and connected browser workflow: PASS; 28 tests passed, 1 optional HuggingFace check skipped.
+- Multi-stage Docker image, container health, static assets and bounded demo: PASS.
+
+The native Windows and actual HuggingFace jobs were added with the branded product update. Their results are pending until that commit's workflow completes. The historical local results below retain the original environment limits; they no longer imply that browser or Docker execution is unverified everywhere.
 
 ## Changes completed
 

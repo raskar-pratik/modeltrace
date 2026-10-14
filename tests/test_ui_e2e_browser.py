@@ -71,6 +71,8 @@ class TestSetupFailFastAndBuildGuards(unittest.TestCase):
 
     def test_setup_sh_fails_fast_on_dependency_or_typecheck_failure(self) -> None:
         """Intentionally failing pip or npm/typecheck commands in setup.sh must abort immediately and never print Setup complete."""
+        if os.name == "nt":
+            self.skipTest("POSIX shell setup is verified on Linux; Windows uses setup.ps1.")
         with tempfile.TemporaryDirectory() as tmp:
             tmp_root = Path(tmp)
             scripts_dir = tmp_root / "scripts"
@@ -187,6 +189,16 @@ class TestSetupFailFastAndBuildGuards(unittest.TestCase):
         self.assertIn("vite build", joined_steps)
         self.assertIn("modeltrace migrate", joined_steps)
 
+    @unittest.skipUnless(shutil.which("pwsh"), "Native PowerShell is not installed on this runner.")
+    def test_native_powershell_stops_after_failed_command(self) -> None:
+        content = (ROOT_DIR / "scripts/setup.ps1").read_text(encoding="utf-8")
+        guard = content.split("$RootDir =", 1)[0]
+        command = guard + '\nInvoke-NativeStep "negative control" { & "' + sys.executable + '" -c "import sys;sys.exit(42)" }; Write-Host "Setup complete"'
+        result = subprocess.run([shutil.which("pwsh"), "-NoProfile", "-Command", command], capture_output=True, text=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertNotIn("Setup complete", result.stdout)
+        self.assertIn("42", result.stderr)
+
 
 class TestBrowserEndToEndFlow(unittest.TestCase):
     @classmethod
@@ -302,6 +314,8 @@ class TestBrowserEndToEndFlow(unittest.TestCase):
         # 1. Overview Empty State initially
         new_audit_btn = self._wait_for_testid("overview-new-audit-btn")
         self.assertIsNotNone(new_audit_btn)
+        brand_mark = d.find_element(By.CSS_SELECTOR, 'img[src="/modeltrace-mark.svg"]')
+        self.assertTrue(d.execute_script("return arguments[0].complete && arguments[0].naturalWidth > 0;", brand_mark))
         self._assert_no_horizontal_overflow("overview-empty-1440")
 
         # 2. Navigate to Endpoint Profiles -> test recoverable form error + valid profile + adapter failure

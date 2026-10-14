@@ -1,7 +1,7 @@
-# Release acceptance
+# ModelTrace 1.0 acceptance
 
-This package is an experimental localhost preview. Real frontend build, dependency resolution, backend/fixture tests, synthetic demos, and HTTP asset delivery pass. See VALIDATION_REPORT.md for exact evidence.
+ModelTrace is a single-user local auditing product. Its product scope is the workbench, CLI, compatible API adapter, local reference adapter, reproducible audits, evidence, and reports.
 
-Browser interaction, Docker, native Windows, actual HuggingFace integration, live LLM accuracy and remote CI execution have explicit BLOCKED or NOT RUN statuses. This is not a verified public hosted launch.
+The first GitHub release CI run passed the real TypeScript/Vite build, connected browser workflow (28 tests passed, 1 optional checkpoint check skipped), Docker build, container health, production assets, and bounded demo. See VALIDATION_REPORT.md for the dated run and exact scope.
 
-Setup fails on native install/build errors. The real npm-generated lock and real Vite-built dist are included. No substitute runtime, secrets, installed dependency trees, virtualenvs or runtime databases are included.
+The updated release pipeline additionally runs native Windows setup and a real local HuggingFace checkpoint test. Their results will be recorded after the branded release commit runs. Public hosting and real-provider detection accuracy are separate from software release acceptance.
