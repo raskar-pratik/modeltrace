@@ -1,8 +1,8 @@
-# ModelTrace 1.0 release state
+# ModelTrace 1.0.0 — final local product
 
-The real frontend lockfile and upstream React/TypeScript/Vite build are now included. Six React form-event typing defects and the Python 3.12/Pydantic import defect were fixed during independent verification. Production setup and Docker require npm ci; the substitute React runtime was removed. The launcher requires real assets and selects the Windows virtualenv path when appropriate.
+The product source, branding, real React/TypeScript/Vite build, CLI, reports and setup scripts are complete. All four release verification jobs passed: Linux plus connected browser, native Windows, Docker, and actual local HuggingFace integration.
 
-Executed checks and remaining blocks are recorded in VALIDATION_REPORT.md and release-evidence/. Public deployment is outside this single-user localhost release.
+Validated source commit: 7ebbcf4a8c22da6b4d37a876c826fac75e0d5654.
+Run: https://github.com/raskar-pratik/modeltrace/actions/runs/38584463897.
 
-
-The first GitHub release workflow completed successfully on 2026-10-14: https://github.com/raskar-pratik/modeltrace/actions/runs/38580108372. Browser and Docker verification passed there despite the local sandbox restrictions. The branded product update adds native Windows and actual HuggingFace jobs and fixes .env loading and documented origin settings.
+The final evidence commit changes documentation and evidence only. See VALIDATION_REPORT.md for supported scope and release-evidence/github-final-verification.json for exact code fingerprints.

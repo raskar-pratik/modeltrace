@@ -1,84 +1,47 @@
-# ModelTrace 1.0 — independent release verification
+# ModelTrace 1.0.0 — release verification
 
-Verified on 14 October 2026. Release scope: **versioned single-user local auditing product**. Public hosting was not configured or published.
+**Release status: verified single-user local product.** The experimental preview label has been removed after completing the release verification on suitable GitHub runners.
 
-## GitHub release verification update
+Validated source: `7ebbcf4a8c22da6b4d37a876c826fac75e0d5654`.
 
-The former preview label reflected incomplete verification in the local sandbox. GitHub CI has since completed successfully for commit `31a4712f52d4e4182d30dfa9f099d1b3940c986d`:
+[Release CI: all four jobs passed](https://github.com/raskar-pratik/modeltrace/actions/runs/38584463897), 14 October 2026. The final evidence-only documentation commit preserves the exact tested application, tests, build configuration, and dependency files. Their SHA-256 fingerprints are in `release-evidence/github-final-verification.json`.
 
-- [Successful release workflow](https://github.com/raskar-pratik/modeltrace/actions/runs/38580108372), completed 2026-10-14.
-- Linux real React/TypeScript/Vite build and connected browser workflow: PASS; 28 tests passed, 1 optional HuggingFace check skipped.
-- Multi-stage Docker image, container health, static assets and bounded demo: PASS.
-
-The native Windows and actual HuggingFace jobs were added with the branded product update. Their results are pending until that commit's workflow completes. The historical local results below retain the original environment limits; they no longer imply that browser or Docker execution is unverified everywhere.
-
-## Changes completed
-
-- Generated a real npm lock with 123 package entries, including esbuild, PostCSS, Rollup, React and React DOM. Setup, Docker and CI now require this lock with npm ci.
-- Fixed six React form handlers that failed actual TypeScript checking. Built and packaged the real React 18.2.0 / Vite 6.4.4 UI. Removed the substitute React runtime and partial AST checker.
-- Fixed the Python 3.12 import failure by pinning Pydantic 1.10.26 and its compatible typing dependency. Added missing transitive Python pins and aligned release metadata to 1.0.0. Removed tests from the installed production package list so the Docker runtime layout can build it. Supported Python range is explicitly 3.11–3.12; execution here used 3.12.
-- Made the launcher reject missing or substitute UI assets and select the Windows virtualenv path. Retained fail-fast POSIX/PowerShell setup.
-- Fixed browser test input edits for real React controlled forms, isolated local HTTP fixture traffic from ambient proxies, and added cleanup even if browser setup fails.
-- Corrected CI browser binary discovery to use the action's declared outputs. Release CI requires a browser rather than silently skipping it. Docker verifies real assets; GitHub CI itself was not run in this session.
-- Replaced outdated documentation and removed inherited screenshots of the previous substitute-runtime build. Added START_HERE.md and a no-provider-call local HTTP smoke script.
-
-## Executed verification
-
-Logs and exact commands are included in `release-evidence/`. Initial failures are retained in browser diagnostic logs; they are not represented as passes.
+## Executed release checks
 
 | Check | Result | Evidence |
 |---|---|---|
-| Online isolated Python dependency installation, editable package, pip check | PASS | Installed actual PyPI packages; no system-site-packages or dependency shims |
-| Clean npm ci | PASS | Actual installed React, TypeScript and Vite; complete generated lock |
-| Actual tsc --noEmit | PASS | Six form-event errors repaired |
-| TypeScript negative control | PASS | Temporary string-to-number assignment failed with TS2322 and exit 2; restored source before build |
-| Vite production build | PASS | Real JS/CSS assets and SPA HTML included |
-| npm audit | PASS | Zero known advisories reported for this resolved frontend dependency tree at verification time; not a general security guarantee |
-| Backend and setup regressions | PASS | 27 passed, 1 optional HF test skipped, 1 browser test deselected |
-| Migrations and launcher prerequisite check | PASS | Idempotent migration path; launcher detects real assets |
-| Full synthetic CLI audits and exports | PASS | Substitution: INCONSISTENT (p=0.0001); genuine with compatible synthetic calibration: CONSISTENT_WITHIN_TESTED_LIMITS (p=0.38); genuine without calibration: INCONCLUSIVE (p=0.38) |
-| Live localhost HTTP delivery | PASS | Health, root HTML, /audits SPA route, JS, CSS and favicon served over HTTP |
-| Separated-seed synthetic benchmark | PASS | Nine conditions, 30 evaluation trials each, 25 calibration trials per named alternative; newly generated JSON included |
-| Fresh source copy and separate Python virtualenv | PASS | Fresh install/build/test/smoke logs included; runtime state and dependency directories excluded |
-| ZIP integrity and payload manifest | PASS | Manifest checks every payload file; manifest excludes its own hash |
+| Linux Python stack and production frontend | PASS | Locked Python install, pip check, npm ci, actual tsc negative control and Vite build |
+| Connected Chrome browser workflow | PASS | Core/browser suite: **31 passed, 1 skipped**; eight screens, synthetic audit, reports, retention, responsive layouts and loaded SVG mark |
+| Optional HF check in core job | SKIPPED THERE | Executed as an actual integration test in the dedicated HF job below |
+| Native Windows setup | PASS | Real PowerShell setup, pip check, frontend build, migration, launcher and local HTTP delivery |
+| Native Windows failure guard | PASS | Targeted suite: **5 passed, 1 skipped**; the intentionally failed native process stops execution. The skipped POSIX shell test runs on Linux |
+| Actual local HuggingFace adapter | PASS | **1 integration test passed** using torch 2.5.1+cpu / transformers 4.46.3 against a locally constructed small causal checkpoint; generation and teacher-forced scoring executed |
+| Docker image | PASS | Multi-stage image build, container health, real JS/CSS assets and bounded synthetic demo |
+| Seeded synthetic software benchmarks | PASS | Separated development/calibration/evaluation seeds; measured JSON is included in exports/ |
+| Logo and brand delivery | PASS | App mark, favicon and wordmark served as image/svg+xml; README logo rendered from the tracked SVG |
 
-Backend checks cover rank/tie handling, Monte Carlo testing, forged calibration bounds, exact configuration binding, worker snapshots, local HTTP retry/error fixtures, migrations, redaction and transport-security regressions. Mocked sharded-checkpoint tests are software unit tests, not evidence of a real HuggingFace model run.
+The browser suite verifies profile creation and recoverable validation errors, an absent-secret connection outcome, probe import and immutable revisions, audit freezing/cancellation/execution, evidence charts, persisted audit history, report export and evidence purging. It checks responsive widths and severe JavaScript errors. The audit-verdict unit tests cover randomized ranks, forged calibration bounds, exact configuration/budget binding and conservative verdicts. Controlled local HTTP fixtures exercise retry, timeout, malformed-response and authentication-error behavior.
 
-## Remaining verification limits
+## Fixes made for the final product
 
-| Check | Status | Reason |
-|---|---|---|
-| Production browser workflow | BLOCKED | Provisioned Chrome/ChromeDriver, but Chrome cannot create a required Unix socket: Operation not permitted. The Selenium attempt failed before a browser session started. Responsive layout and browser interactions remain unverified for this real build. |
-| Docker image build/run | BLOCKED | Docker and Podman are absent. The multi-stage recipe and CI job are included, not certified. |
-| Native Windows/PowerShell execution | NOT RUN | PowerShell is absent. Guard structure is checked by a test; actual Windows behavior is not claimed. |
-| Actual HuggingFace generation/scoring | NOT RUN | Optional torch/transformers are not installed; corresponding integration test is skipped. |
-| Live commercial LLM auditing | NOT RUN | No paid provider calls or credentials used. Synthetic benchmarks are not real LLM accuracy. |
-| GitHub Actions workflow | NOT RUN | Workflow prepared locally; no remote repository/run was selected. |
+- Installed the real React/TypeScript/Vite toolchain and generated its complete dependency lock.
+- Corrected six React form-event types and the Python 3.12/Pydantic import failure.
+- Added a consistent original branching-M mark, favicon and SVG README wordmark.
+- Made documented .env settings load without overriding existing process environment values; retained compatibility with legacy origin names.
+- Served branding SVGs explicitly rather than returning the SPA HTML fallback.
+- Corrected Windows interpreter-tree cleanup so the server and its file handles stop together.
+- Made browser verification wait for the saved profile and its connection result instead of racing the asynchronous table refresh.
 
-## Newly measured synthetic outcomes
+## Meaning and scope
 
-All evaluation conditions use alpha=0.01 and 9,999 Monte Carlo null simulations. Calibration seeds are separated from evaluation seeds. Counts below were rerun from this source.
+ModelTrace 1.0.0 is a **local, single-user software product**. Initial setup downloads dependencies. Its synthetic demo needs no provider key or GPU after setup. Real endpoints need explicit profiles, secrets in backend environment variables, trusted references and bounded budgets. No paid provider calls were made during release verification.
 
-| Condition | Rejections | Empirical rate | Two-sided nominal 95% Wilson interval |
-|---|---:|---:|---|
-| `genuine_null_logit_n20_m8` | 0/30 | 0.000 | [0.0000, 0.1135] |
-| `weak_alt_5pct_logit_n20_m8` | 0/30 | 0.000 | [0.0000, 0.1135] |
-| `mixed_15pct_logit_n20_m8` | 3/30 | 0.100 | [0.0346, 0.2562] |
-| `mixed_35pct_logit_n20_m8` | 15/30 | 0.500 | [0.3315, 0.6685] |
-| `mixed_65pct_logit_n20_m8` | 30/30 | 1.000 | [0.8865, 1.0000] |
-| `substituted_100pct_logit_n20_m8` | 30/30 | 1.000 | [0.8865, 1.0000] |
-| `mixed_35pct_logit_low_budget_n10_m4` | 6/30 | 0.200 | [0.0951, 0.3731] |
-| `substituted_100pct_length_only_n20_m8` | 30/30 | 1.000 | [0.8865, 1.0000] |
-| `genuine_null_length_only_n20_m8` | 0/30 | 0.000 | [0.0000, 0.1135] |
+Behavioral inconsistency is evidence about score distributions under the frozen tested conditions. It does not establish exact weights, quantization, parameter count or provider intent. Non-rejection does not prove model identity. A consistency verdict requires a matched calibration meeting the declared power adequacy policy for named alternatives.
 
-Zero false alarms in 30 toy trials does not establish a 1% empirical false-positive rate: the Wilson upper bound is about 11.35%. Weak 5% routing changes were not detected at the tested screening budget. Calibration requires empirical power and the recomputed nominal 95% Wilson lower bound to both meet 0.80 for each named alternative. Wilson coverage is approximate and per-alternative; it does not establish simultaneous coverage or sensitivity to unseen alternatives.
+The measured synthetic benchmark is software verification, not real hosted-LLM detection accuracy. Zero false rejections in 30 toy trials does not establish a 1% empirical false-positive rate. Wilson intervals have approximate nominal coverage; separate alternative intervals do not create a simultaneous confidence guarantee. The real HF test is a small local integration fixture, not an evaluation of every large checkpoint, precision or device combination.
 
-## Start and remaining release checks
+Public multi-user hosting, paid-provider empirical benchmarks, every third-party checkpoint and native macOS execution are not certified by this release. These are deployment and evaluation boundaries, not an experimental preview label.
 
-Follow START_HERE.md. Initial setup needs registry access; the demo needs no key or GPU once dependencies are installed. Open http://127.0.0.1:8000 after launch. Live provider profiles require explicit configuration and can use paid quota.
+## Evidence and history
 
-On a suitable runner, run the required browser workflow and Docker job before calling the packaging pipeline fully verified. Native Windows and actual checkpoint execution need their corresponding platforms/dependencies. Public multi-user hosting needs its own authentication and deployment design.
-
-Build provenance, asset hashes, actual command results and software versions are in `release-evidence/build-provenance.json` and `release-evidence/commands.json`.
-
-Primary dependency references used during repair: [Pydantic 1.10.26 publisher record](https://pypi.org/project/pydantic/1.10.26/) and [setup-chrome output documentation](https://github.com/browser-actions/setup-chrome#outputs). Verification claims above come from the included execution logs, not these documentation pages.
+Current evidence: `release-evidence/github-final-verification.json`, the linked GitHub run, compiled assets, the release manifest and controlled local logs. The earlier sandbox-limited report is retained as `release-evidence/historical-local-review.md`; its BLOCKED/NOT RUN entries describe that past environment and are superseded by the current runner evidence.

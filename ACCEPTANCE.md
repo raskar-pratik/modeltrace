@@ -1,7 +1,7 @@
-# ModelTrace 1.0 acceptance
+# ModelTrace 1.0.0 acceptance
 
-ModelTrace is a single-user local auditing product. Its product scope is the workbench, CLI, compatible API adapter, local reference adapter, reproducible audits, evidence, and reports.
+Release accepted for the single-user local product. The full Linux/browser workflow, Docker build and smoke checks, native Windows setup and cleanup, and actual local HuggingFace generation/scoring all passed in the release CI run linked from VALIDATION_REPORT.md.
 
-The first GitHub release CI run passed the real TypeScript/Vite build, connected browser workflow (28 tests passed, 1 optional checkpoint check skipped), Docker build, container health, production assets, and bounded demo. See VALIDATION_REPORT.md for the dated run and exact scope.
+The tracked app logo, favicon, README wordmark, real production frontend and generated npm lock are included. Provider secrets and installed dependencies are excluded from source control.
 
-The updated release pipeline additionally runs native Windows setup and a real local HuggingFace checkpoint test. Their results will be recorded after the branded release commit runs. Public hosting and real-provider detection accuracy are separate from software release acceptance.
+Behavioral and statistical conclusions retain their stated assumptions and calibration limits. Internet-facing multi-user hosting and real-provider detection-accuracy certification are outside this release's scope.

@@ -25,8 +25,8 @@
     },
     {
       "path": "ACCEPTANCE.md",
-      "size_bytes": 783,
-      "sha256": "396f7c2de56cc9ae5eaa3d24edb1abc17d8952cec554829d3e6bcd42d849b275"
+      "size_bytes": 701,
+      "sha256": "d875b3124b08d6d95a6a0e21c2e8d04092ad17c90a16d638c7be188dae424836"
     },
     {
       "path": "ARCHITECTURE.md",
@@ -35,8 +35,8 @@
     },
     {
       "path": "BUILD_STATE.md",
-      "size_bytes": 941,
-      "sha256": "51d7e6eec11339cab5c6cb3eeb810ce95beb80cbcba1befc5e48c293b6c703e9"
+      "size_bytes": 629,
+      "sha256": "cb1536c572e3288e9d1e5b4b478ea4e9fa605980a1cde8146c937d3973014067"
     },
     {
       "path": "DECISIONS.md",
@@ -57,6 +57,11 @@
       "path": "README.md",
       "size_bytes": 6563,
       "sha256": "4e010fce6d31a573dd342d7441e4e749056b7c839a67a7add3804cabe49ba8db"
+    },
+    {
+      "path": "RELEASE_NOTES.md",
+      "size_bytes": 1075,
+      "sha256": "f7ee94ffeb6eb26de4172ec1e95f742f92c6a32b817b7968e1dece18fc19cdf4"
     },
     {
       "path": "SECURITY.md",
@@ -80,8 +85,8 @@
     },
     {
       "path": "VALIDATION_REPORT.md",
-      "size_bytes": 8312,
-      "sha256": "04bc6cafd480f84adb7dbc9bf015cb8c74fb0b8d44dc059d8af655d1deb7f7c9"
+      "size_bytes": 5206,
+      "sha256": "ab9b7ab80bd4fe138280f21224551d347b9c2fdc67958ce0cd8e3ad2b558e3eb"
     },
     {
       "path": "docker-compose.yml",
@@ -380,8 +385,8 @@
     },
     {
       "path": "release-evidence/build-provenance.json",
-      "size_bytes": 1405,
-      "sha256": "62ec78f270487c8d5ce68f7f925165f13540b1669597351ca6b0adebf25eb31e"
+      "size_bytes": 1746,
+      "sha256": "94fb15700cfab4cc533079070dfe23c5178cf1f95f0d52cbf82ec5ef67d1c5b1"
     },
     {
       "path": "release-evidence/commands.json",
@@ -395,8 +400,8 @@
     },
     {
       "path": "release-evidence/final-checks.json",
-      "size_bytes": 567,
-      "sha256": "8c0b43dec39be5e48de2fd057a83fd45ca3b7811268db2cd39d64017696c3a5e"
+      "size_bytes": 768,
+      "sha256": "9848ab5cb514efde5d4f72e6410c67164fcb5c770261687a610024154d8dfacf"
     },
     {
       "path": "release-evidence/fresh-frontend.log",
@@ -437,6 +442,16 @@
       "path": "release-evidence/github-baseline-verification.json",
       "size_bytes": 346,
       "sha256": "cc18058741f30f6f5a7aaac99f8624329c5f5975f6992061401cf6e8616a334b"
+    },
+    {
+      "path": "release-evidence/github-final-verification.json",
+      "size_bytes": 7235,
+      "sha256": "b72f2b8bcc3dc52d6cc9d0fa155cda5e04f358d3e1ee52e7259924f23bf409e2"
+    },
+    {
+      "path": "release-evidence/historical-local-review.md",
+      "size_bytes": 8378,
+      "sha256": "94d9a366273afd46cd6fac5c7c96e1b332ec2dfaad2e2dea837598753a0a32e8"
     },
     {
       "path": "release-evidence/launcher.log",

@@ -10,10 +10,12 @@
   },
   "fresh_http_delivery": "PASS",
   "docker_python_package_layout_without_tests": "PASS",
-  "full_docker_image": "BLOCKED",
-  "browser_workflow": "BLOCKED: required Unix socket denied",
-  "native_windows": "NOT RUN",
-  "actual_huggingface": "NOT RUN",
+  "full_docker_image": "PASS on GitHub runner",
+  "browser_workflow": "PASS on GitHub runner",
+  "native_windows": "PASS on GitHub runner",
+  "actual_huggingface": "PASS: actual local checkpoint integration",
   "paid_api": "NOT RUN",
-  "gitHub_CI": "NOT RUN"
+  "gitHub_CI": "PASS",
+  "verified_source_commit": "7ebbcf4a8c22da6b4d37a876c826fac75e0d5654",
+  "run_url": "https://github.com/raskar-pratik/modeltrace/actions/runs/38584463897"
 }

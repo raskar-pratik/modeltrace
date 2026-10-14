@@ -7,30 +7,37 @@
   "npm_package_count": 123,
   "frontend_assets": {
     "frontend/dist/assets/app.js": {
-      "size_bytes": 240651,
-      "sha256": "137b873c8d7a69586460f39ffe988ba98151db5cac75b961e0557e7dd8411296"
+      "size_bytes": 240159,
+      "sha256": "5c838c0dd0e2e3f76953d5f2dfdca236c269593142a9f67bca2eb28b0c0dec5d"
     },
     "frontend/dist/assets/styles.css": {
       "size_bytes": 9675,
       "sha256": "4c87afb905966f37e50bac359133c94b80c3654dbb8b466c33d151152d7a433b"
     },
     "frontend/dist/favicon.svg": {
-      "size_bytes": 603,
-      "sha256": "87d5f29af227c68f9e5a2467ba8ac8ccf235d1d98e53545dd506a859511fb8f1"
+      "size_bytes": 734,
+      "sha256": "623a021162ab4f59ce6340bd4de15c57f7e783021bf6e272c1ab0af84a0c26db"
     },
     "frontend/dist/index.html": {
       "size_bytes": 476,
       "sha256": "cff0a1af97d7a65d1903b6190eecfbcb6a271ee1b0c9a26e6532a3c1905b6783"
     },
     "frontend/dist/logo.svg": {
-      "size_bytes": 771,
-      "sha256": "df708be98ecbe52bce5e39ae5d5591be46b2d76a55d5a3de0f348a4843970c89"
+      "size_bytes": 1203,
+      "sha256": "45716f88d1c6cdb35958e48191456f10951d79f9136ecc3ccab47cb2eed2946f"
+    },
+    "frontend/dist/modeltrace-mark.svg": {
+      "size_bytes": 734,
+      "sha256": "623a021162ab4f59ce6340bd4de15c57f7e783021bf6e272c1ab0af84a0c26db"
     }
   },
-  "browser": "BLOCKED: Chrome requires Unix sockets denied by this environment",
-  "docker": "BLOCKED: no Docker/Podman binary",
-  "github_workflow": "NOT RUN: workflow included, no remote run started",
-  "native_windows": "NOT RUN: PowerShell not installed",
-  "live_huggingface": "NOT RUN: optional torch/transformers not installed",
-  "live_paid_api": "NOT RUN: no external provider calls"
+  "browser": "PASS on GitHub release runner",
+  "docker": "PASS on GitHub release runner",
+  "github_workflow": "PASS: all four release jobs",
+  "native_windows": "PASS on GitHub Windows runner",
+  "live_huggingface": "PASS: actual tiny local checkpoint integration; no external model download",
+  "live_paid_api": "NOT RUN: no external provider calls",
+  "scope": "single-user local auditing product",
+  "github_release_run_url": "https://github.com/raskar-pratik/modeltrace/actions/runs/38584463897",
+  "validated_source_commit": "7ebbcf4a8c22da6b4d37a876c826fac75e0d5654"
 }
